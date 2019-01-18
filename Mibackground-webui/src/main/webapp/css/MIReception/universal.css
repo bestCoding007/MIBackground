@@ -1,0 +1,293 @@
+@font-face {
+    font-family: 'iconfont';  /* project id 313968 */
+    src: url('../../font/aliVectorIcons/font_ly12yy1nf622zkt9.eot');
+    src: url('../../font/aliVectorIcons/font_ly12yy1nf622zkt9.eot?#iefix') format('embedded-opentype'),
+    url('../../font/aliVectorIcons/font_ly12yy1nf622zkt9.woff') format('woff'),
+    url('../../font/aliVectorIcons/font_ly12yy1nf622zkt9.ttf') format('truetype'),
+    url('../../font/aliVectorIcons/font_ly12yy1nf622zkt9.svg#iconfont') format('svg');
+}
+
+.iconfont {
+    font-family: iconfont;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.side-item .iconfont {
+    position: absolute;
+    right: 20px;
+    color: #b2b2b2;
+}
+
+/*头部导航栏*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#menu_nav {
+    /*	width: 100%;*/
+    height: 40px;
+    background: #333333;
+    font-size: 12px;
+}
+
+.menu_list {
+    color: #B0B0B0;
+    border-right: 1px solid #B0B0B0;
+    line-height: 40px;
+}
+
+.menu_lr {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#menu_nav a {
+    color: #B0B0B0;
+    text-decoration: none;
+}
+
+#menu_nav a:hover {
+    color: white;
+}
+
+#menu_list {
+    margin-left: 60px;
+}
+
+#menu_right {
+    margin-left: 460px;
+    border-right: 1px solid #B0B0B0;
+}
+
+.menu_right {
+    border-right: 1px solid #B0B0B0;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#cart {
+    margin-left: 20px;
+    display: block;
+    width: 120px;
+    height: 40px;
+    background: #424242;
+    position: absolute;
+    margin-left: 1267px;
+    margin-top: -40px;
+}
+
+#cart_span {
+    display: block;
+    position: absolute;
+}
+
+/*end*/
+#endCart {
+    /*width: 100%;*/
+    height: 274px;
+    /*438*/
+}
+
+#server {
+    margin-left: 60px;
+    width: 1230px;
+    height: 80px;
+    font-size: 18px;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+#server a:link,
+#server a:link {
+    color: #616161;
+}
+
+a .ser1:hover,
+a .ser2:hover {
+    color: #FF6700;
+}
+
+#server a:visited,
+#server a:visited {
+    color: #616161;
+}
+
+.ser1,
+.ser2 {
+    width: 242px;
+    height: 22px;
+    float: left;
+    text-align: center;
+    margin: 29px 0px;
+    border-right: 1px solid #CCCCCC;
+    line-height: 22px;
+}
+
+#help {
+    width: 1230px;
+    height: 192px;
+    margin: 0 59px;
+}
+
+#helpleft {
+    width: 973px;
+    height: 192px;
+    float: left;
+}
+
+#helpright {
+    height: 192px;
+    width: 258px;
+    margin-left: 972px;
+}
+
+#endcopy {
+    height: 163px;
+    background: #FAFAFA;
+}
+
+#copy {
+    float: left;
+}
+
+#copy,
+#copy1 {
+    font-size: 14px;
+    margin: 42px 0;
+    width: 104px;
+}
+
+.copy2 {
+    font-size: 12px;
+    margin-top: 30px;
+    margin-left: 2px;
+    color: #888888;
+}
+
+.copy3 {
+    font-size: 12px;
+    margin: 9px 2px;
+    color: #888888;
+}
+
+#helpleft a {
+    text-decoration: none;
+}
+
+.copy2:hover,
+.copy3:hover {
+    color: #FF6700;
+}
+
+.copy4 {
+    float: left;
+    font-size: 14px;
+    margin: 42px 52px;
+    width: 64px;
+}
+
+.copy6 {
+    float: left;
+    font-size: 14px;
+    margin-left: 52px;
+    margin-top: 42px;
+    position: absolute;
+}
+
+#phone_copy {
+    /*margin: 40px;*/
+    width: 258px;
+    height: 110px;
+    position: absolute;
+    margin-top: 42px;
+    border-left: 1px solid #CCCCCC;
+}
+
+#kf {
+    font-size: 14px;
+    text-align: center;
+    width: 118px;
+    height: 27px;
+    border: 1px solid #FF6700;
+    color: #FF6700;
+    line-height: 27px;
+    margin: 12px 66px;
+}
+
+#kf_a:link {
+    text-decoration: none;
+}
+
+#kf:hover {
+    background: orangered;
+    color: white;
+}
+
+#lg {
+    margin: 26px 60px;
+    background: #424242;
+    width: 52px;
+    height: 52px;
+    position: absolute;
+}
+
+#co {
+    width: 722px;
+    height: 50px;
+    margin-top: 28px;
+    margin-left: 126px;
+    position: absolute;
+    font-size: 12px;
+    color: #616161;
+}
+
+#co span a:link {
+    text-decoration: none;
+}
+
+#co span a:hover {
+    color: #FF6700;
+}
+
+#co a:visited {
+    color: #616161;
+}
+
+.co_t {
+    display: block;
+    float: left;
+    margin: 0 1px;
+}
+
+.co_s {
+    color: #CCCCCC;
+}
+
+.co_s br .shu2 a:hover {
+    /*text-decoration: none;*/
+    color: #FF6700;
+}
+
+#im_co {
+    width: 520px;
+    height: 28px;
+    margin-left: 860px;
+    margin-top: 26px;
+    display: block;
+    position: absolute;
+}
+
+.shu {
+    color: #CCCCCC;
+}
+
+#mih {
+    color: #CCCCCC;
+    font-size: 18px;
+    font-family: "微软雅黑";
+    display: block;
+    position: absolute;
+    margin-top: 110px;
+    margin-left: 580px;
+}

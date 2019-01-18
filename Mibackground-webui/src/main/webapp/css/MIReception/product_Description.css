@@ -1,0 +1,434 @@
+body {
+    width: 1520px;
+    margin: 0 auto;
+    overflow-x: hidden;
+}
+
+.div0 {
+	width: 1520px;
+	margin: 0 auto;
+}
+
+.div_site_head {
+	width: 100%;
+	height: 100px;
+	border-bottom: 2px solid #ff6700;
+}
+
+.div_container {
+	width: 1224px;
+	height: 100px;
+	margin: 0 auto;
+}
+
+.div_container_logo {
+	width: 62px;
+	height: 55px;
+	display: inline-block;
+	position: relative;
+	top: -23px;
+}
+
+.div_container_a1 {
+	width: 55px;
+	height: 55px;
+	background: url('../../../img/reception/mi-logo.png')no-repeat 50% 50%;
+	display: inline-block;
+	margin: 0 auto;
+	background-color:#ff6700;
+	opacity: 1;
+}
+
+.div_nav_list {
+	width: 830px;
+	height: 90px;
+	padding: 10px 0 0 20px;
+	display: inline-block;
+}
+
+.div_nav_category {
+	width: 127px;
+	height: 88px;
+	padding-right: 15px;
+	display: inline-block;
+	text-align: right;
+}
+
+.div_nav_a1 {
+	width: 127px;
+	height: 24px;
+	text-align: right;
+	float: left;
+	padding: 26px 0 38px;
+}
+
+.div_nav_span1 {
+	float: right;
+	color: #333;
+	text-decoration: none;
+	text-align: right;
+}
+
+.div_nav_span2 {
+	font-size: 16px;
+	float: right;
+	color: #333;
+	text-decoration: none;
+	display: inline-block;
+}
+
+.div_nav_links {
+	display: inline-block;
+	padding: 26px 10px 40.5px;
+	color: #333;
+	text-align: center;
+}
+
+.div_container_input {
+	width: 296px;
+	height: 50px;
+	margin-top: 24px;
+	float: right;
+}
+
+.div_container_text {
+	top: 0;
+	right: 51px;
+	z-index: 1;
+	width: 223px;
+	height: 48px;
+	padding: 0 10px;
+	border: 1px solid #e0e0e0;
+	font-size: 14px;
+	line-height: 48px;
+	outline: 0;
+	transition: all .2s;
+}
+
+#s_img {
+    margin-left: 245px;
+    margin-top: -50px;
+    position: absolute;
+    width: 51px;
+    height: 48px;
+    border: 1px solid #e0e0e0;
+    border-left: 0px solid;
+}
+
+.s_img:hover {
+    cursor: pointer;
+    background: url('../../../img/reception/s_search.png');
+    margin-left: 245px;
+    margin-top: -50px;
+    position: absolute;
+    width: 51px;
+    height: 48px;
+    border: 1px solid #e0e0e0;
+    border-left: 0px solid;
+}
+
+.div_headNav {
+	width: 100%;
+	height: 63px;
+    margin-left: 100px;
+}
+
+.div_headNav_navSwitch {
+	width: 1224px;
+	height: 60px;
+	margin: auto;
+}
+
+.div_headNav_navSwitch h2 {
+	margin: 0;
+	padding: 0;
+	line-height: 60px;
+	font-weight: 400;
+	font-size: 18px;
+	color: #333;
+	display: inline-block;
+}
+
+.div_headNav_right {
+	width: 217.83px;
+	height: 21px;
+	float: right;
+	display: inline-block;
+	margin-top: 20px;
+}
+
+.div_headNav_a1 {
+	font-size: 14px;
+	color: #808080;
+	text-align: left;
+	text-decoration: none;
+	display: inline-block;
+}
+
+.div_headNav_span1 {
+	width: 3.63px;
+	height: 16px;
+	color: #B0B0B0;
+	font-size: 8px;
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+.div_login_notic {
+    margin-left: 100px;
+	width: 1349px;
+	height: 48px;
+	background: #F5F5F5;
+}
+
+.div_login_container {
+	width: 1224px;
+	height: 49px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.div_login_notic_a1 {
+	font-size: 14px;
+	color: orange;
+	text-decoration: none;
+	text-align: center;
+	line-height: 49px;
+}
+
+.div_login_notic_a1::before {
+	content: '为方便您购买，请提前登录 ';
+	color: #333;
+	font-size: 14px;
+	margin-right: 30px;
+}
+
+.div_box_clearfix {
+	width: 1349px;
+	height: 796px;
+	background: white;
+}
+
+.div_box_clearfix_center {
+	width: 1224px;
+	height: 718px;
+	padding-top: 30px;
+	margin: auto;
+}
+
+.div_pro_view {
+	width: 606px;
+	height: 600px;
+	float: left;
+}
+
+.div_pro_info {
+	width: 606px;
+	height: 704px;
+	float: right;
+	margin-left: 10px;
+}
+
+.div_pro_view_img1 {
+	width: 560px;
+	height: 560px;
+}
+
+.div_pro_info_h1 {
+	line-height: 1;
+	margin: 0;
+	padding: 0;
+	font-size: 24px;
+	font-weight: normal;
+	color: #212121;
+}
+
+.div_pro_info_desc {
+	width: 606px;
+	height: 52px;
+	padding-top: 8px;
+}
+
+.div_pro_info_p1 {
+	color: #b0b0b0;
+	height: 50px;
+	line-height: 20px;
+	font-size: 14px;
+	margin: 0;
+}
+
+.div_pro_info_span1 {
+	width: 606px;
+	height: 18px;
+	line-height: 18px;
+	padding: 15px 0 20px 0;
+	display: block;
+	font-size: 18px;
+	color: orange;
+	border-bottom: 1px solid #D3D3D3;
+}
+
+.div_user_default_address {
+	width: 524px;
+	height: 44px;
+	padding: 30px 40px 30px 40px;
+	margin-top: 40px;
+	border: 1px solid #E0E0E0;
+	background: #FAFAFA;
+}
+
+.div_default_address {
+	width: 514px;
+	height: 21px;
+}
+
+.div_product_action {
+	width: 514px;
+	height: 21px;
+}
+
+.div_default_span1 {
+	font-size: 14px;
+	color: #333;
+	margin-right: 15px;
+}
+
+.div_default_span2 {
+	font-size: 14px;
+	color: orange;
+}
+
+.div_list_wasp {
+	width: 606px;
+	height: 78px;
+	margin-top: 40px;
+}
+
+.div_pro_choose {
+	width: 606px;
+	height: 78px;
+	margin-bottom: 30px;
+}
+
+.div_step_title {
+	font-size: 18px;
+	color: #333;
+	line-height: 1;
+}
+
+.div_btn_biglarge {
+	width: 300px;
+	height: 44px;
+	margin: 15px 0 0 5px;
+	border: 1px solid orangered;
+	text-align: center;
+    cursor: pointer;
+}
+
+.div_btn_biglarge_a {
+	color: orangered;
+	font-size: 16px;
+	text-decoration: none;
+	line-height: 44px;
+}
+
+.div_btn_biglarge_img {
+	width: 16px;
+	height: 16px;
+	background-repeat: no-repeat;
+	background: 100% 100%;
+	margin: auto;
+	margin-right: 10px;
+}
+
+.div_pro_list {
+	width: 546px;
+	height: 80px;
+	padding: 30px 30px 30px 30px;
+	margin-bottom: 30px;
+	background: #FAFAFA;
+	margin-top: 30px;
+}
+
+.div_pro_list_li {
+	width: 546px;
+	height: 30px;
+	font-size: 14px;
+	color: #808080;
+	text-align: left;
+	line-height: 30px;
+}
+
+.div_pro_list_totlePrice {
+	width: 546px;
+	height: 30px;
+	padding-top: 20px;
+	font-size: 24px;
+	color: orange;
+	text-align: left;
+}
+
+.div_pro_list_span1 {
+	float: right;
+	text-align: right;
+	font-size: 14px;
+	color: #808080;
+}
+
+.div_btn_wrap_clearfix {
+	width: 606px;
+	height: 56px;
+	margin: 10px 0 20px 0;
+}
+
+.div_btn_wrap_a {
+	width: 300px;
+	height: 54px;
+	color: white;
+	display: inline-block;
+	line-height: 54px;
+	text-decoration: none;
+	text-align: center;
+	background: orangered;
+}
+
+.div_btn_wrap_a2 {
+	width: 142px;
+	height: 54px;
+	color: white;
+	display: inline-block;
+	line-height: 54px;
+	text-decoration: none;
+	text-align: center;
+	background: #B0B0B0;
+	margin-left: 8px;
+}
+
+.div_pro_policy {
+	width: 606px;
+	height: 41px;
+}
+
+.div_pro_policy_span1 {
+	width: 117.69px;
+	height: 31px;
+	display: inline-block;
+	margin-right: 15px;
+	line-height: 30px;
+	margin-bottom: 10px;
+	font-size: 14px;
+	color: #B0B0B0;
+	text-align: right;
+}
+
+.div_pro_policy_span2 {
+	width: 87.69px;
+	height: 31px;
+	display: inline-block;
+	margin-right: 15px;
+	line-height: 30px;
+	margin-bottom: 10px;
+	font-size: 14px;
+	color: #B0B0B0;
+	text-align: right;
+}

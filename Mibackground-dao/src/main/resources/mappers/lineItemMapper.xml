@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyangwen.mibackground.dao.LineItemDao">
+    <!--id应该是接口中的方法，结果类型如没有配置别名则应该使用全名称 -->
+    <!--配置商品信息表和数据库之间的映射关系-->
+    <resultMap id="LineItemMap" type="LineItem">
+        <id column="lineId" property="lineId"></id>
+        <result column="userId" property="userId"></result>
+        <result column="productId" property="productId"></result>
+        <result column="orderId" property="orderId"></result>
+        <result column="newPrice" property="newPrice"></result>
+        <result column="productNumber" property="productNumber"></result>
+        <result column="productCount" property="productCount"></result>
+        <result column="shopId" property="shopId"></result>
+        <result column="orderOtherId" property="orderOtherId"></result>
+        <result column="quantity" property="quantity"></result>
+        <result column="unitPrice" property="unitPrice"></result>
+        <result column="productName" property="productName"></result>
+        <result column="productPhoto" property="productPhoto"></result>
+        <!--映射关系，指定属性与属性的类型 id里的column是用户表（Users）的外键-->
+        <association property="usersMap" javaType="Users">
+            <id property="userId" column="userId"></id>
+            <result property="uName" column="uName"></result>
+            <result property="passWord" column="passWord"></result>
+            <result property="userLevel" column="userLevel"></result>
+            <result property="userTime" column="userTime"></result>
+            <result property="nickname" column="nickname"></result>
+            <result property="userSex" column="userSex"></result>
+            <result property="userAge" column="userAge"></result>
+            <result property="userPhone" column="userPhone"></result>
+            <result property="userAddress" column="userAddress"></result>
+            <result property="userEmail" column="userEmail"></result>
+            <result property="userPhoto" column="userPhoto"></result>
+        </association>
+        <!--商品表（Product）映射-->
+        <association property="ProductMap" javaType="Product">
+            <id column="productId" property="productId"></id>
+            <result column="catId" property="catId"></result>
+            <result column="productName" property="productName"></result>
+            <result column="oldPrice" property="oldPrice"></result>
+            <result column="productPhoto" property="productPhoto"></result>
+            <result column="productDesc" property="productDesc"></result>
+            <result column="productCount" property="productCount"></result>
+            <result column="shopId" property="shopId"></result>
+            <result column="productColor" property="productColor"></result>
+            <result column="isNewProduct" property="isNewProduct"></result>
+            <result column="isHotProduct" property="isHotProduct"></result>
+        </association>
+        <!--订单表（UserOrder）映射-->
+        <association property="UserOrderMap" javaType="UserOrder">
+            <id column="orderId" property="orderId"></id>
+            <result column="userId" property="userId"></result>
+            <result column="orderTime" property="orderTime"></result>
+            <result column="orderReName" property="orderReName"></result>
+            <result column="orderReAddress" property="orderReAddress"></result>
+            <result column="orderEmail" property="orderEmail"></result>
+            <result column="orderPhone" property="orderPhone"></result>
+            <result column="orderAction" property="orderAction"></result>
+            <result column="orderMoney" property="orderMoney"></result>
+            <result column="orderTotalPrice" property="orderTotalPrice"></result>
+            <result column="orderPayment" property="orderPayment"></result>
+            <result column="statu" property="statu"></result>
+        </association>
+        <!--店面信息映射（ShopInfo）-->
+        <association property="ShopInfoMap" javaType="ShopInfo">
+            <id column="shopId" property="shopId"></id>
+            <result column="shopName" property="shopName"></result>
+            <result column="userId" property="userId"></result>
+            <result column="uName" property="uName"></result>
+            <result column="userComment" property="userComment"></result>
+            <result column="merchant" property="merchant"></result>
+            <result column="shopAddress" property="shopAddress"></result>
+        </association>
+    </resultMap>
+
+    <!--添加-->
+    <insert id="addToCart" parameterType="LineItem">
+        insert into LineItem(lineId,userId,productId,orderId,newPrice,productNumber,productCount,shopId,quantity,unitPrice,productName,productPhoto)
+        values(#{lineId},#{userId},#{productId},#{orderId},#{newPrice},#{productNumber},#{productCount},#{shopId},#{quantity},#{unitPrice},#{productName},#{productPhoto});
+    </insert>
+
+    <!--查询购物车商品-->
+    <select id="getLineItem"  resultType="LineItem">
+        select lineId,productName,newPrice,productNumber,productPhoto from lineitem
+        /*order by lineId desc*/
+    </select>
+
+    <update id="editNumber">
+        update lineitem set productNumber = #{productNumber},productCount = #{productCount} where lineId = #{lineId};
+    </update>
+
+    <!--根据ID删除循环多条数据-->
+    <delete id="deleteByIds" parameterType="String">
+        delete from lineitem
+        where lineId in
+        <foreach collection="ids" open="(" item="lineId" separator="," close=")">
+            #{lineId}
+        </foreach>
+    </delete>
+
+    <!--根据购物车编号获得其他参数-->
+    <select id="getLineItemId"  resultType="LineItem">
+        select * from lineitem
+        where lineId = #{lineId}
+    </select>
+
+    <!--删除单条购物车数据-->
+    <delete id="deleteLineId" parameterType="String">
+        delete from lineitem where lineId = #{lineId}
+    </delete>
+</mapper>

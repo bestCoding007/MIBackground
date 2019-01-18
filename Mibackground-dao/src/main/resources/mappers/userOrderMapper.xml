@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyangwen.mibackground.dao.UserOrderDao">
+    <!--id应该是接口中的方法，结果类型如没有配置别名则应该使用全名称 -->
+    <!--配置商品信息表和数据库之间的映射关系-->
+    <resultMap id="UserOrderMap" type="UserOrder">
+        <!--订单表（UserOrder）映射-->
+        <id column="orderId" property="orderId"></id>
+        <result column="userId" property="userId"></result>
+        <result column="orderTime" property="orderTime"></result>
+        <result column="orderReName" property="orderReName"></result>
+        <result column="orderReAddress" property="orderReAddress"></result>
+        <result column="orderEmail" property="orderEmail"></result>
+        <result column="orderPhone" property="orderPhone"></result>
+        <result column="orderAction" property="orderAction"></result>
+        <result column="orderMoney" property="orderMoney"></result>
+        <result column="orderTotalPrice" property="orderTotalPrice"></result>
+        <result column="orderPayment" property="orderPayment"></result>
+        <result column="statu" property="statu"></result>
+        <result column="orderName" property="orderName"></result>
+        <result column="orderNumber" property="orderNumber"></result>
+        <result column="orderPhoto" property="orderPhoto"></result>
+        <result column="orderPrice" property="orderPrice"></result>
+    </resultMap>
+
+    <!--添加-->
+    <insert id="addToOrder" parameterType="UserOrder">
+        insert into userorder(orderId,orderName,orderPrice,orderPhoto,orderNumber,orderPayment,orderTime,orderReName,orderPhone,orderReAddress)
+        values(#{orderId},#{orderName},#{orderPrice},#{orderPhoto},#{orderNumber},#{orderPayment},#{orderTime},#{orderReName},#{orderPhone},#{orderReAddress});
+    </insert>
+
+    <!--查询购物车商品-->
+    <select id="getOrder" resultType="UserOrder">
+        select orderId,orderName,orderPrice,orderPhoto,orderNumber,orderPayment,orderTime from userorder
+    </select>
+
+    <!--根据ID删除循环多条数据-->
+    <delete id="deleteByIds" parameterType="java.lang.Integer">
+        delete from userorder
+        where orderId in
+        <foreach collection="ids" open="(" item="orderId" separator="," close=")">
+            #{orderId}
+        </foreach>
+    </delete>
+
+    <!--删除单条订单-->
+    <delete id="deleteOrderId" parameterType="java.lang.Integer">
+        delete from userorder where orderId = #{orderId}
+    </delete>
+
+    <!--订单分页-->
+    <select id="orderLimit"  resultType="UserOrder">
+        select orderId,orderReName,orderPhoto,orderPhone,orderReAddress,orderName,orderPrice,orderTime,orderNumber,orderPayment,statu from userorder
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="orderTime!=null and orderTime!=''">
+                or orderTime like concat(concat('%',#{orderTime}),'%')
+            </if>
+            <if test="orderTime!=null and orderTime!=''">
+                or orderReAddress like concat(concat('%',#{orderTime}),'%')
+            </if>
+            <if test="orderTime!=null and orderTime!=''">
+                or orderPayment like concat(concat('%',#{orderTime}),'%')
+            </if>
+        </trim>
+        order by orderTime desc
+        LIMIT #{pageNo},#{pageSize}
+    </select>
+</mapper>

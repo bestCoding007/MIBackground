@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>填写订单信息</title>
+    <link rel="shortcut icon" href="../../../img/reception/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../../css/MIReception/confirmAnOrder.css">
+    <style>
+        .editInfo {
+            color: #ff6700;
+            position: absolute;
+            margin-left: 216px;
+            margin-top: 24px;
+            text-decoration: none;
+        }
+
+        .user-menu {
+            position: absolute;
+            display: none;
+            margin-left: 1030px;
+            z-index: 3;
+            width: 120px;
+            padding: 7px 0;
+            list-style-type: none;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 70px;
+        }
+
+        .user-menu a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .user-menu li {
+            padding: 6px 0;
+        }
+    </style>
+</head>
+<body>
+<div id="top-div">
+    <div id="top-div-1">
+        <a id="top-div-img" href="/reception/MIIndex"><img src="../../../img/reception/mi-logo.png"></a>
+        <a class="userSession" href="/reception/login"
+           style="position: absolute;margin-left: 940px;margin-top: 40px;border-right: 2px solid #d4d4d4;width: 104px;font-size: 12px;color: #757575;text-decoration: none;text-align: center">登录</a>
+        <ul class="user-menu">
+            <li>
+                <a href="javascript:;" rel="nofollow" target="_blank">个人中心</a>
+            </li>
+            <li>
+                <a href="javascript:;" rel="nofollow" target="_blank">评价晒单</a>
+            </li>
+            <li>
+                <a href="javascript:;" rel="nofollow" target="_blank">我的喜欢</a>
+            </li>
+            <li>
+                <a href="javascript:;" rel="nofollow" target="_blank">小米账户</a>
+            </li>
+            <li id="backIndex">
+                <a href="javascript:;" rel="nofollow">退出登录 </a>
+            </li>
+        </ul>
+        <a href="/reception/orderManagement" class="queOrder"
+           style="position: absolute;margin-left: 1050px;margin-top: 42px;font-size: 12px;color: #757575;text-decoration: none">我的订单</a>
+        <h2>确认订单</h2>
+    </div>
+</div>
+
+<div id="mi-body">
+    <div id="mi-body-box">
+        <div id="mi-body-dizhi">
+            <h3>收货地址</h3>
+        </div>
+        <div id="mi-body-dizhi2">
+            <div id="dizhi-body-div">
+                <!--地址区域-->
+            </div>
+            <div class="mi-body-dizhi2-1">
+                <p class="p1">+</p>
+                <p class="p2">添加新地址</p>
+            </div>
+        </div><!--收货地址-->
+        <div class="mi-body-box2">
+            <h3 class="title">商品</h3>
+            <div class="go-car" id="goToCart">
+                <a href="javascript:;">返回购物车 ></a>
+            </div>
+        </div>
+        <div id="commDiv" style="margin-left: 54px;margin-top: 16px;line-height: 30px">
+
+        </div>
+        <div class="mi-body-box2 mi-body-box2-1">
+            <h3 class="title">配送方式</h3><a href="javascript:;">包邮</a>
+        </div>
+        <div class="mi-body-box2 mi-body-box2-1">
+            <h3 class="title">优惠</h3>
+        </div>
+        <div class="mi-body-box2 mi-body-box2-2">
+            <div style="text-align: left;width: 100%;height: 30px;color: #ff6700;font-size: 14px;margin-top: 4px">
+                <span style="font-size: 18px;width: 150px;color: black;">发票</span>
+                <span style="width: 72px;margin-left: 120px">电子发票</span>
+                <span style="margin-left: 14px">个人</span>
+                <span style="margin-left: 14px">商品明细</span>
+                <span style="margin-left: 14px">修改 ></span>
+            </div>
+            <div id="mi-body-box2-2-jiesuan">
+                <ul>
+                    <li class="clear">
+                        <label style="text-align: left">商品数量:</label><span id="CarNumber"
+                                                                           style="text-align: right"></span>
+                    </li>
+                    <li class="clear">
+                        <label style="text-align: left">商品总价:</label><span id="CarPrice"></span>
+                    </li>
+                    <li class="clear">
+                        <label style="text-align: left">活动优惠:</label><span>-0元</span>
+                    </li>
+                    <li class="clear">
+                        <label style="text-align: left">优惠价抵扣:</label><span>-0元</span>
+                    </li>
+                    <li class="clear">
+                        <label style="text-align: left">运费:</label><span>0元</span>
+                    </li>
+                    <li class="cleartop">
+                        <label style="text-align: left">应付总额:</label><span id="CarSumPrice"
+                                                                           style="width: 100px;margin-left: -46px;position: absolute"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="mi-body-box2 mi-body-box2-3">
+            <button type="button" id="jiesuan-btn" style="border: none">去下单</button>
+        </div>
+    </div>
+</div>
+<script src="../../../js/MIReception/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/MIReception/jquery.lazyload.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    /*取到当前用户登录信息*/
+    var uName = "";
+    var uPhone = "";
+    var uAddress = ""
+
+    function getUser() {
+        $.ajax({
+            url: '/users/getUserSession',
+            type: 'GET',
+            dataType: 'json',
+        }).done(function (data) {
+            uName = data.msg;
+            if (data.code == 1) {
+                if (data.msg != null) {
+                    $(".userSession").html(data.msg + "<span style='font-size: 14px;'> &or;</span>");
+                    //登录成功后a标签的href改变
+                    $(".userSession").prop("href", "javascript:;");
+                } else {
+                    location.href = "/reception/MIIndex";
+                    $(".userSession").text("登录 ");
+                    $(".queOrder").css({"marginTop": "39px", "maiginLeft": "20px"});
+                }
+            }
+            var info = data.msg;
+
+            (function () {
+                $.ajax({
+                    url: "/users/getUserInfo",
+                    type: "GET",
+                    data: {uName: info},
+                }).done(function (data) {
+                    $.each(data.data, function (i, obj) {
+                        uPhone = obj.userPhone;
+                        uAddress = obj.userAddress;
+                        if (uPhone.length == 11) {
+                            //替换字符串
+                            var result = uPhone.substr(0, parseInt(uPhone.split('').length / 3)) + '****' + uPhone.substr(parseInt(uPhone.split('').length / 2 + 2), uPhone.split('').length)
+                        }
+                        var div = "<div style='width: 268px;height: 177px;border: 1px solid #ff6700;float: left;margin-right: 20px;color: #757575;cursor: pointer;font-size: 14px'>";
+                        div += "<div style='margin-left: 26px;margin-top: 20px;font-size: 18px;margin-bottom: 14px;color: black'>" + obj.nickname + "</div>"
+                        div += "<div style='margin-left: 26px' class='userPhone'>" + result + "</div>"
+                        div += "<div style='margin-left: 26px;margin-top: 6px;width: 190px' class='address'>" + obj.userAddress + "</div>"
+                        div += "<a href='javascript:;' class='editInfo'>修改</a>"
+                        div += "</div>"
+                        $("#dizhi-body-div").append(div);
+                    });
+                });
+            }())
+        })
+    };
+    getUser();
+
+    /*打开并传值到productCart页*/
+    $("#goToCart").click(function () {
+        location.href = "/reception/productCart";
+    });
+
+    var sum = 0;
+    (function () {
+        var pId
+        var pName;
+        var pPrice;
+        var productPhotos;
+        var productCount;
+        $.ajax({
+            url: "/lineItem/getLineItem",
+            type: "GET",
+            dataType: "json",
+        }).done(function (data) {
+            $.each(data.data, function (i, obj) {
+                /* $(".dataBox :gt(0)").remove();*/
+                var tr = "<tr style='color:#424242;width: 100%;text-align: left;font-size: 14px;margin-top: 20px' class='dataBox'>";
+                tr += "<td style='margin-left: 40px;width:40px'><img align='center' data-original='../../files/" + obj.productPhoto + "' src='../../../img/indexProductType/load.png' width='30px'; height='30px'; class='imgs' /></td>";
+                tr += "<td style='width:692px;'>" + obj.productName + "</td>";
+                tr += "<td style='width: 62px'>" + obj.newPrice + "元" + " x" + "</td>";
+                tr += "<td style='width: 210px'>" + obj.productNumber + "</td>";
+                tr += "<td style=' color: #ff6700;'>" + obj.productNumber * obj.newPrice + "元" + "</td>";
+                tr += "</tr>";
+
+                sum += (obj.newPrice * obj.productNumber);
+
+                var orderNum = obj.productNumber;
+                var orderPrice = obj.newPrice;
+                var orderName = obj.productName
+                var orderPhoto = obj.productPhoto;
+
+                //随机订单号
+                var orderIdS = 0;
+
+                function MathRand() {
+                    for (var i = 0; i < 6; i++) {
+                        orderIdS += Math.floor(Math.random() * 100000000);
+                    }
+                }
+
+                //下单时间为年月日格式
+                //获取当前时间
+                var date = new Date();
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                var day = date.getDate();
+                if (month < 10) {
+                    month = "0" + month;
+                }
+                if (day < 10) {
+                    day = "0" + day;
+                }
+                var nowDate = year + "年" + month + "月" + day + "日";
+
+                MathRand();
+
+                var ids = obj.lineId
+
+                //下单时删除购物车中的商品
+                function orderIds() {
+                    $.ajax({
+                        url: "/lineItem/deleteLineId",
+                        type: "POST",
+                        data: {lineId: ids},
+                        success: function () {
+                            console.log("商品移除成功！")
+                        }
+                    })
+                }
+
+                //添加到订单里
+                $("body").on("click", "#jiesuan-btn", function () {
+                    $.ajax({
+                        url: "/userOrder/addToOrder",
+                        type: "POST",
+                        data: {
+                            orderId: orderIdS,
+                            orderName: orderName,
+                            orderPrice: orderPrice,
+                            orderTime: nowDate,
+                            orderNumber: orderNum,
+                            orderPayment: "待支付",
+                            orderPhoto: orderPhoto,
+                            orderReName: uName,
+                            orderPhone: uPhone,
+                            orderReAddress: uAddress
+                        }
+                    }).done(function () {
+                        //下单后执行删除购物车中的商品
+                        //orderIds();
+                        location.href = "/reception/buySuccess";
+                    });
+                });
+
+                $("#commDiv").append(tr);
+            });
+
+            $("#CarNumber").text(data.data.length + "件");
+            $("#CarPrice").text(sum + "元");
+            $("#CarSumPrice").html(sum + "<span style='font-size: 16px;position: absolute;margin-left: -40px'>元</span>");
+            /*因为ajax异步原因，只能在此调用懒加载*/
+            $("#commDiv .imgs").lazyload({
+                "effect": "fadeIn"
+            });
+
+            pId = data.data.productId;
+            pName = data.data.productName;
+            pPrice = data.data.newPrice;
+            productPhotos = data.data.productPhoto;
+            productCount = data.data.productCount
+        });
+    }());
+
+    //登录的悬停
+    ;(function () {
+        $(".user-menu").on("mouseover mouseout", function (event) {
+            if (event.type == "mouseover") {
+                //鼠标悬停
+                $(".user-menu").css('display', 'block');
+            } else if (event.type == "mouseout") {
+                //鼠标离开
+                $(".user-menu").css('display', 'none');
+            }
+        })
+    }())
+
+    //登录的悬停
+    ;(function () {
+        $(".userSession").on("mouseover", function (event) {
+            if (event.type == "mouseover") {
+                //鼠标悬停
+                $(".user-menu").css('display', 'block');
+            }
+        })
+    }())
+</script>
+</body>
+</html>

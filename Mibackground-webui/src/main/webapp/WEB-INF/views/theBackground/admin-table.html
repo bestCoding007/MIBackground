@@ -1,0 +1,634 @@
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>小米后台管理</title>
+    <meta name="description" content="这是一个 table 页面">
+    <meta name="keywords" content="table">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="stylesheet" href="../css/assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="../css/assets/css/admin.css">
+    <link rel="stylesheet" href="../css/paging.css">
+    <style>
+        button {
+            background: #4f92cc;
+            color: white;
+            border: none;
+            margin-left: 3px;
+        }
+
+        #tbList tr:nth-child(odd) {
+            background: #f1f1f1;
+        }
+
+        #tbList tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        #tbList tr:hover {
+            background: #d6d6d6;
+        }
+
+        #diaBox {
+            font-size: 18px;
+        }
+
+        #diaBox input {
+            width: 200px;
+            height: 30px;
+        }
+
+        #diaBox #editBtn {
+            color: white;
+            margin-left: 650px;
+            width: 56px;
+            height: 33.5px;
+            margin-top: 53px;
+            font-size: 14px;
+            font-weight: 100;
+            border-radius: 4px;
+            border: 1px solid #cccccc;
+        }
+    </style>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+    以获得更好的体验！</p>
+<![endif]-->
+
+<header class="am-topbar admin-header">
+    <div class="am-topbar-brand">
+        <strong>MI</strong>
+        <small>小米手机商城后台管理</small>
+    </div>
+
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+            data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
+            class="am-icon-bars"></span></button>
+    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+        <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+            <!--<li><a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a></li>-->
+            <li><a href="/reception/MIIndex"><span class="am-icon-exchange"></span> 前台管理 </a></li>
+            <li class="am-dropdown" data-am-dropdown>
+                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                    <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
+                </a>
+                <ul class="am-dropdown-content">
+                    <li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
+                    <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
+                    <li onclick="safetyOFF()"><a href="javascript:void(0)"><span class="am-icon-power-off"></span>退出</a></li>
+                </ul>
+            </li>
+            <li onclick="toFullscreen()"><a href="javascript:;"><span class="am-icon-arrows-alt"></span> <span
+                    class="admin-fullText" id="fullYesOrNo">开启全屏</span></a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="am-cf admin-main">
+    <!-- sidebar start -->
+    <div class="admin-sidebar">
+        <ul class="am-list admin-sidebar-list">
+            <li><a href="/background/theBackground"><span class="am-icon-home"></span> 首页</a></li>
+            <li class="admin-parent">
+                <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-user-md"></span>
+                    管理员操作<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                    <li><a href="/background/addUser" class="am-cf"><span class="am-icon-leaf"></span> 添加管理员</a></li>
+                    <li><a href="/background/reset" class="am-cf"><span class="am-icon-adn"></span> 修改密码</a></li>
+                    <li><a href="/background/goodsEntry" class="am-cf"><span class="am-icon-edit"></span> 商品录入</a></li>
+                </ul>
+            </li>
+
+            <!--从这开始做-->
+            <li class="admin-parent">
+                <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-user"></span>
+                    用户信息<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                <ul class="am-list am-collapse admin-sidebar-sub am-in">
+                    <li><a href="/background/UsersManage"><span class="am-icon-empire"></span> 用户信息</a></li>
+                </ul>
+            </li>
+            <li><a href="/background/comment"><span class="am-icon-comment"></span> 评论管理</a></li>
+            <li><a href="/background/order"><span class="am-icon-wheelchair"></span> 订单管理</a></li>
+            <li onclick="safetyOFF()"><a href="javascript:void(0)"><span class="am-icon-sign-out"></span> 注销</a></li>
+        </ul>
+
+        <div class="am-panel am-panel-default admin-sidebar-panel">
+            <div class="am-panel-bd">
+                <p><span class="am-icon-bookmark"></span> 公告</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;动作可以慢，但战略一定要正确，看准了再跟上去！—— Driver_Chen</p>
+            </div>
+        </div>
+
+        <div class="am-panel am-panel-default admin-sidebar-panel">
+            <div class="am-panel-bd">
+                <p><span class="am-icon-tag"></span> wiki</p>
+                <p>Welcome to the Driver_Chen</p>
+            </div>
+        </div>
+    </div>
+    <!-- sidebar end -->
+
+    <!-- content start -->
+    <div class="admin-content">
+
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">商品信息</strong> /
+                <small>GoodsInfo</small>
+            </div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-md-6 am-cf">
+                <div class="am-fl am-cf">
+                    <div class="am-btn-toolbar am-fl">
+                        <div class="am-btn-group am-btn-group-xs">
+                            <button type="button" class="am-btn am-btn-default" id="goodsEntry"><span
+                                    class="am-icon-plus"></span> 新增
+                            </button>
+                            <!-- <button type="button" class="am-btn am-btn-default"><span class="am-icon-save"></span> 保存
+                             </button>-->
+                            <!-- <button type="button" class="am-btn am-btn-default"><span class="am-icon-archive"></span> 审核</button>-->
+                            <!--<button type="button" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> 删除
+                            </button>-->
+                            <button type="button" class="am-btn am-btn-default" id="EntryData"><span
+                                    class="am-icon-file-excel-o"></span> Excel导出
+                            </button>
+                            <form style="margin-left: 170px" id="ExcelBox" method="post"
+                                  enctype="multipart/form-data">
+                                <input type="file" name="files" id="files"/>
+                                <button type="button" style="margin-left: 200px;margin-top: -26px;background: cadetblue;height: 30px"
+                                        id="importExcel">
+                                    <span class="am-icon-file-excel-o"> Excel导入</span>
+                                </button>
+                            </form>
+                        </div>
+
+                        <!--<div class="am-form-group am-margin-left am-fl">
+                            <select style="height: 31px;">
+                                <option value="option1">商品类别</option>
+                                <option value="option2">小米</option>
+                                <option value="option3">红米</option>
+                                &lt;!&ndash;<option value="option4">VIVO</option>
+                                <option value="option5">Apple</option>
+                                <option value="option6">三星</option>
+                                <option value="option7">小米</option>&ndash;&gt;
+                            </select>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="am-u-md-3 am-cf">
+                <div class="am-fr">
+                    <form class="am-input-group am-input-group-sm">
+                        <input type="text" class="am-form-field" id="formData" placeholder="名称/价格/简介">
+                        <span class="am-input-group-btn">
+                  <button class="am-btn am-btn-default" type="button" id="selAll">搜索</button>
+                </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <form class="am-form">
+                    <table id="tbList" style="width: 100%;text-align: center;">
+                        <thead>
+                        <tr style="background: white">
+                            <th class="table-check"><input type="checkbox" id="item" name="checkAll"/></th>
+                            <th>商品编号</th>
+                            <th>类别编号</th>
+                            <th>名称</th>
+                            <th>市场价格</th>
+                            <th>图片</th>
+                            <th>商品简介</th>
+                            <th>库存量</th>
+                            <th>店面编号</th>
+                            <th>颜色</th>
+                            <th>是否新品</th>
+                            <th>是否热门</th>
+                            <th class="table-set">操作</th>
+                        </tr>
+                        </thead>
+                    </table>
+                    <!--分页-->
+                    <div class="abpagger" style="width: 1000px;height: 60px;margin: auto;">
+                        <div class="pagger-box pagger" id="box"></div>
+                    </div>
+                    <div class="am-cf">
+                        共 <span id="dataSize"></span> 条记录
+                    </div>
+                    <hr/>
+                    <p>注：.....</p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- content end -->
+</div>
+
+<footer>
+    <hr>
+    <p class="am-padding-left">© 2018 AllMobilize, Inc. Licensed under MIT license.</p>
+</footer>
+
+<!--[if lt IE 9]>
+<!--<script src="../js/js/jquery-3.3.1.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="../js/js/polyfill/rem.min.js"></script>
+<script src="../js/js/polyfill/respond.min.js"></script>
+<script src="../js/js/amazeui.legacy.js"></script>-->
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="../js/js/jquery.min.js"></script>
+<script src="../js/js/amazeui.min.js"></script>
+<!--<![endif]-->
+<script src="../js/js/app.js"></script>
+<script src="../js/paging.js"></script>
+<script src="../../../js/artDialog/dist/dialog-plus.js"></script>
+<script type="text/javascript">
+    /*开启全屏*/
+    function toFullscreen() {
+        var de = document.documentElement;
+        if (de.requestFullscreen) {
+            de.requestFullscreen();
+        } else if (de.mozRequestFullScreen) {
+            de.mozRequestFullScreen();
+        } else if (de.webkitRequestFullScreen) {
+            de.webkitRequestFullScreen();
+        }
+    }
+
+    /*分页*/
+    function showProductPage() {
+        var pageSize = 7;
+        $('#box').paging({
+            initPageNo: 1, // 初始页码
+            totalPages: 10, //总页数
+            slideSpeed: 600, // 缓动速度。单位毫秒
+            jump: true, //是否支持跳转
+            callback: function (page) { // 回调函数
+                $.ajax({
+                    url: "/product/productLimit",
+                    data: {
+                        pageNo: page,
+                        pageSize: pageSize,
+                        productName: $("#formData").val(),
+                        oldPrice: $("#formData").val(),
+                        productDesc: $("#formData").val(),
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        $("#tbList tr:gt(0)").remove();
+                        $.each(data.data, function (i, obj) {
+                            /*判断是否新品*/
+                            if (obj.isNewProduct == 1) {
+                                obj.isNewProduct = "是";
+                            } else {
+                                obj.isNewProduct = "否";
+                            }
+                            /*判断是否热门*/
+                            if (obj.isHotProduct == 1) {
+                                obj.isHotProduct = "是";
+                            } else {
+                                obj.isHotProduct = "否";
+                            }
+                            /*判断简介文本长度大于14后加上......*/
+                            if (obj.productDesc.length > 14) {
+                                obj.productDesc = obj.productDesc.substring(0, 14) + "......"
+                            }
+
+                            var tr = "<tr>";
+                            tr += "<td><input type='checkbox' name='check' value='" + obj.productId + "'></td>"
+                            tr += "<td>" + obj.productId + "</td>";
+                            tr += "<td>" + obj.catId + "</td>";
+                            tr += "<td>" + obj.productName + "</td>";
+                            tr += "<td>" + obj.oldPrice +"</td>";
+                            tr += "<td data-img='" + obj.productPhoto + "'>" + " <img src='../../files/" + obj.productPhoto + "' width='50px'; height='50px';/>" + "</td>";
+                            tr += "<td>" + obj.productDesc + "</td>";
+                            tr += "<td>" + obj.productCount + "</td>";
+                            tr += "<td>" + obj.shopId + "</td>";
+                            tr += "<td>" + obj.productColor + "</td>";
+                            tr += "<td>" + obj.isNewProduct + "</td>";
+                            tr += "<td>" + obj.isHotProduct + "</td>";
+                            tr += "<td><button type='button' class='am-btn am-btn-default am-btn-xs am-text-secondary' id='editProduct'><span class='am-icon-pencil-square-o'></span> 编辑</button>&nbsp;<button type='button' onclick='delByIds()' class='am-btn am-btn-default am-btn-xs am-text-danger'><span class='am-icon-trash-o'></span> 删除</button>";
+                            tr += "</tr>";
+                            $("#tbList").append(tr);
+                        })
+                        $("#dataSize").html(data.data.length);
+                    }
+                })
+            }
+        })
+    }
+    showProductPage();
+
+    /*模糊查询*/
+    $("#selAll").click(function () {
+        showProductPage();
+    })
+
+    /*列表/导航栏退出后台管理系统*/
+    function safetyOFF() {
+        if (confirm("您真的要退出后台管理系统吗？")) {
+            $.ajax({
+                url: "/background/safetyOFF",
+                type: "GET",
+                success: function () {
+                    //去掉前进后退功能
+                    //location.replace("/administrator/login")
+                    location.replace("/background/theBackground");
+                    return true;
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+
+    //全选反选
+    $(":checkbox[name=checkAll]").click(function () {
+        var checks = $(":checkbox[name=check]");
+        for (var i = 0; i < checks.length; i++) {
+            if (checks[i].checked == true) {
+                checks[i].checked = false
+            } else {
+                checks[i].checked = true;
+            }
+        }
+    })
+
+    //批量删除
+    var bl = true;
+    var arr = [];
+
+    function delByIds() {
+        /*if(confirm("您真的要删除该商品吗？")){*/
+        var checks = $(":checkbox[name=check]");
+        for (var i = 0; i < checks.length; i++) {
+            if (checks[i].checked == true) {
+                arr.push(checks[i].value)
+                bl = false
+            }
+            /*else if (checks[i].checked == false) {
+                           return alert("请选择删除项！");
+                       }*/
+        }
+        $.ajax({
+            url: "/product/deleteByIds",
+            type: "POST",
+            data: JSON.stringify(arr),
+            contentType: "application/json",
+            success: function (data) {
+                if (data.code == 1) {
+                    alert("商品删除成功！");
+                    showProductPage();
+                } else {
+                    alert("商品删除失败！");
+                    showProductPage();
+                }
+            }
+        })
+        /*}else {
+            return false;
+        }*/
+    }
+
+    /*点击新增按钮跳到商品录入界面*/
+    $("#goodsEntry").click(function () {
+        location.href = "goodsEntry";
+    })
+
+    /*Excel导出数据到桌面*/
+    $("#EntryData").click(function () {
+        alert("Excel已保存至桌面");
+        location.href = "/product/outExcel";
+    })
+
+    /*获取商品的数据*/
+    $("body").on("click", '#editProduct', function () {
+        var edit1 = $(this).parent().parent().find("td").eq(1).text();
+        var edit2 = $(this).parent().parent().find("td").eq(2).text();
+        var edit3 = $(this).parent().parent().find("td").eq(3).text();
+        var edit4 = $(this).parent().parent().find("td").eq(4).text();
+        var edit5 = $(this).parent().parent().find("td").eq(5).data('img');
+        var edit6 = $(this).parent().parent().find("td").eq(6).text();
+        var edit7 = $(this).parent().parent().find("td").eq(7).text();
+        var edit8 = $(this).parent().parent().find("td").eq(8).text();
+        var edit9 = $(this).parent().parent().find("td").eq(9).text();
+        var edit10 = $(this).parent().parent().find("td").eq(10).text();
+        var edit11 = $(this).parent().parent().find("td").eq(11).text();
+
+        /*弹出层*/
+        var box = dialog({
+            title: '编辑商品',
+            lock: true,
+            content: '<div style="margin: auto;" id="diaBox">' +
+                '<p style="margin-left: 90px;">商品编号：<input type="text" id="productId" name="productId" disabled="disabled" /><span style="margin-left: 100px;">商品类型：<select name="catId" id="catId" style="height: 30px;width: 200px;">\n' +
+                '                                <option value="">--请选择型号--</option>\n' +
+                '                                <option value="1">红米-mix系列</option>\n' +
+                '                                <option value="2">红米-max系列</option>\n' +
+                '                                <option value="3">小米-note系列-移动版</option>\n' +
+                '                                <option value="4">小米-note系列-联通版</option>\n' +
+                '                                <option value="5">小米-note系列-电信版</option>\n' +
+                '                                <option value="6">小米-note系列-全网通低配</option>\n' +
+                '                                <option value="7">小米-note系列-全网通高配</option>\n' +
+                '                                <option value="8">小米-note系列-双网通低配</option>\n' +
+                '                                <option value="9">小米-note系列-双网通高配</option>\n' +
+                '                                <option value="10">小米-mix系列</option>\n' +
+                '                                <option value="11">小米-max系列</option>\n' +
+                '                                <option value="12">红米-pro系列</option>\n' +
+                '                            </select></p>' +
+                '<p style="margin-left: 90px;">名称：<input type="text" id="productName" name="productName" style="margin-left: 35px;" /><span style="margin-left: 100px;">价格：<input type="text" id="oldPrice" name="oldPrice" style="margin-left: 37px;" /></span></p>' +
+                '<p style="margin-left: 90px;">库存量：<input type="number" id="productCount" name="productCount" style="margin-left: 17px;" /><span style="margin-left: 100px;">店面编号：<input type="text" id="shopId" name="shopId" readonly /></span></p>' +
+                '<p style="margin-left: 90px;">颜色： <select name="productColor" id="productColor" style="height: 30px;width: 200px;margin-left: 30px;">\n' +
+                '                                <option value="">--请选择颜色--</option>\n' +
+                '                                <option value="黑">黑</option>\n' +
+                '                                <option value="红">红</option>\n' +
+                '                                <option value="金">金</option>\n' +
+                '                                <option value="白">白</option>\n' +
+                '                                <option value="蓝">蓝</option>\n' +
+                '                                <option value="银">银</option>\n' +
+                '                                <option value="透明">透明</option>\n' +
+                '                                <option value="暗红">暗红</option>\n' +
+                '                                <option value="玫瑰红">玫瑰红</option>\n' +
+                '                                <option value="赤焰红">赤焰红</option>\n' +
+                '                                <option value="樱花粉">樱花粉</option>\n' +
+                '                                <option value="炫酷黑">炫酷黑</option>\n' +
+                '                                <option value="极夜黑">极夜黑</option>\n' +
+                '                                <option value="曜石黑">曜石黑</option>\n' +
+                '                                <option value="宝石蓝">宝石蓝</option>\n' +
+                '                                <option value="巴里蓝">巴里蓝</option>\n' +
+                '                                <option value="冰川蓝">冰川蓝</option>\n' +
+                '                                <option value="梦幻蓝">梦幻蓝</option>\n' +
+                '                                <option value="象牙白">象牙白</option>\n' +
+                '                                <option value="玫瑰金">玫瑰金</option>\n' +
+                '                                <option value="流沙金">流沙金</option>\n' +
+                '                                <option value="暮光金">暮光金</option>\n' +
+                '                                <option value="铂银灰">铂银灰</option>\n' +
+                '                                <option value="深空灰">深空灰</option>\n' +
+                '                                <option value="苍穹灰">苍穹灰</option>\n' +
+                '                            </select><span style="margin-left: 100px;">简介：<input type="text" id="productDesc" name="productDesc" style="margin-left: 36px;" /></span></p>' +
+                '<p style="margin-left: 90px;">新品：<input type="radio" id="isNewProduct" name="isNewProduct" value="1" style="width: 20px;height: 20px;margin-left: 60px;" />是<input type="radio" id="isNewProduct2" name="isNewProduct" value="0" style="width: 20px;height: 20px;margin-left: 40px;">否<span style="margin-left: 160px;">' +
+                '热门：<input type="radio" id="isHotProduct" name="isHotProduct" value="1"  style="width: 20px;height: 20px;margin-left: 60px;" />是<input type="radio" id="isHotProduct2" name="isHotProduct" value="0"  style="width: 20px;height: 20px;margin-left: 40px;" />否</span></p>' +
+                '<p style="margin-left: 90px;"><div class="am-u-sm-12 am-u-md-6 am-u-md-push-1" style="margin-left: 3px;">\n' +
+                '                <div class="am-panel am-panel-default">\n' +
+                '                    <div class="am-panel-bd">\n' +
+                '                        <div class="am-g">\n' +
+                '                            <div class="am-u-md-4" id="exaaa">\n' +
+                '                                <img id="cropedBigImg" value=\'custom\' alt="" data-address=\'\' title="自定义背景"\n' +
+                '                                     src="../../files/' + edit5 + '"/>\n' +
+                '                            </div>\n' +
+                '                            <div class="am-u-md-8">\n' +
+                '                                <form class="container" enctype="multipart/form-data" method="post" id=\'formBox\'\n' +
+                '                                      name="form" >\n' +
+                '                                    <input type="file" id="chooseImage" name="files" id="files">\n' +
+                '                                    <p class="am-form-help">请选择要上传的图片...</p>\n' +
+                '                                    <button type="button" class="am-btn am-btn-primary am-btn-xs" style="width: 60px;height: 30px;" id="editPhoto">保存</button>\n' +
+                '                                </form>\n' +
+                '                            </div>\n' +
+                '                        </div>\n' +
+                '                    </div>\n' +
+                '                </div></p><span style="margin-left:0px;color: red;font-size: 16px">温馨提示：编辑图片时请记得先上传图片。</span>' +
+                '<br /><br /><span><button type="button" onclick="editProduct()" id="editBtn">更新</button></span></div>',
+            width: '860px',
+            height: '460px',
+            backdropOpacity: 0.5,
+            resize: true,
+            drag: true,
+            cancelValue: ' 取消 ',
+            cancel: function () {
+            }
+        });
+        /*将数据保存到框内*/
+        $("#productId").val(edit1);
+        $("#catId").val(edit2)
+        $("#productName").val(edit3);
+        $("#oldPrice").val(edit4);
+        $("#productCount").val(edit7);
+        $("#shopId").val(edit8);
+        $("#productDesc").val(edit6);
+        $("#productColor").val(edit9);
+
+        /*取得是否的值*/
+        if (edit10 != "否") {
+            $("#isNewProduct").attr("checked", 'checked');
+        } else {
+            $("#isNewProduct2").attr("checked", 'checked');
+        }
+        /*取得是否的值*/
+        if (edit11 != "否") {
+            $("#isHotProduct").attr("checked", 'checked');
+        } else {
+            $("#isHotProduct2").attr("checked", 'checked');
+        }
+
+        /*打开弹出层和遮罩层*/
+        box.showModal();
+
+        /*获取图片*/
+        $('#chooseImage').on('change', function () {
+            var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+                fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase();
+            // 检查是否是图片
+            if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+                error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+                return;
+            }
+            $('#cropedBigImg').attr('src', filePath);
+            $('#loding').show();
+        });
+        $('#chooseImage').on('change', function () {
+            var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+                fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+                src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+            console.log(filePath);
+            // 检查是否是图片
+            if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+                error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+                return;
+            }
+            $('#cropedBigImg').attr('src', src);
+        });
+    })
+
+    /*更新商品*/
+    function editProduct() {
+        $.ajax({
+            url: "/product/editProduct",
+            type: "POST",
+            data: {
+                productId: $("#productId").val(),
+                catId: $("#catId").val(),
+                productName: $("#productName").val(),
+                oldPrice: $("#oldPrice").val(),
+                productCount: $("#productCount").val(),
+                shopId: $("#shopId").val(),
+                productDesc: $("#productDesc").val(),
+                productColor: $("#productColor").val(),
+                isNewProduct: $("input[name=isNewProduct]:checked").val(),
+                isHotProduct: $("input[name=isHotProduct]:checked").val()
+            },
+            success: function () {
+                alert("商品更新成功！")
+                showProductPage();
+            }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("商品更新失败！" + XMLHttpRequest + "  " + textStatus + "  " + errorThrown);
+                showProductPage();
+            }
+        })
+    }
+
+    /*上传修改的图片*/
+    $("body").on("click", '#editPhoto', function () {
+        $.ajax({
+            url: "/product/fileSave2",
+            type: "POST",
+            cache: false,
+            data: new FormData($("#formBox")[0]),
+            async: false,
+            processData: false,
+            contentType: false,
+            success: function () {
+                alert("图片上传成功！");
+            }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("网络错误，请重试！！" + XMLHttpRequest + "  " + textStatus + "  " + errorThrown);
+            }
+        })
+    });
+
+    /*Excel导入数据*/
+    $("body").on("click", '#importExcel', function () {
+        if (document.getElementById("files").value == null || document.getElementById("files").value == "") {
+            alert("请选择Excel文件。")
+        } else {
+            $.ajax({
+                url: "/product/leadProduct",
+                type: "POST",
+                cache: false,
+                data: new FormData($("#ExcelBox")[0]),
+                async: false,
+                processData: false,
+                contentType: false,
+                success: function () {
+                    alert("导入数据成功！");
+                    showProductPage();
+                }, error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("网络错误，请重试！！" + XMLHttpRequest + "  " + textStatus + "  " + errorThrown);
+                    showProductPage();
+                }
+            })
+        }
+    });
+</script>
+</body>
+</html>

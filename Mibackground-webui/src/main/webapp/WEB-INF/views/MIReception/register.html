@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>小米帐号 - 注册</title>
+		<link rel="shortcut icon" href="'../../../img/reception/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" type="text/css" href="../../../css/receptionLogin/register.css"/>
+	</head>
+	<body>
+		<div id="controller">
+			<div id="main">
+				<a href="/reception/MIIndex"><img src="'../../../img/reception/milogo.png" class="m1"/></a>
+				<div id="mihao">注册小米帐号</div>
+				<div id="phone">
+					<span class="p1">账号</span><br>
+					<input type="text" name="uName" id="uName" placeholder="  帐号"/>
+					<span id="su">成功注册帐号后，帐号将不能被修改</span>
+					<span class="p1">密码</span><br>
+					<input type="password" name="passWord" id="passWord" placeholder="  密码" />
+					<input type="button"  id="registerUser" value="立即注册" />
+                    <span class="phoneRegister" style="display: block;color:#666;margin-top: 6px;width: 330px;height: 20px"><a href="/reception/registerVerify">手机短信注册</a></span>
+				</div>
+				<div id="end_copy"><img src="../../../img/reception/icon2.png" class="i-1" style="margin-top: 2px;position: absolute;margin-left: -20px;"/>注册帐号即表示您同意并愿意遵守小米 <a href="#" class="xs">用户协议</a>和 <a href="#" class="xs">隐私政策</a></div>
+			</div>
+			<div id="end">
+				<div id="copy">
+					<a href="#" style="color: black;">简体</a><span class="y">|</span>	
+					<a href="#">繁体</a><span class="y">|</span>
+					<a href="#">English</a><span class="y">|</span>
+					<a href="">常见问题</a><span class="y">|</span>
+					<a href="">隐私政策</a>
+				</div>
+				<div id="copy2">					
+					小米公司版权所有-京ICP备10046444-<img src="../../../img/reception/ghs.png"/><a href="#" class="jin">京公网安备11010802020134号</a>-京ICP证110507号
+				</div>
+			</div>
+		</div>
+
+		<script src="../../../js/jquery-3.3.1.js"></script>
+		<script>
+            //注册
+            $("body").on("click","#registerUser",function () {
+                $.ajax({
+                    url:"/users/register",
+                    type:"POST",
+                    data:{uName:$("#uName").val(),passWord:$("#passWord").val()}
+                }).done(function (data) {
+                    if(data.code==1){
+                        location.href = "/reception/login";
+                    }else{
+                        alert(data.msg);
+                        $("#uName").val("");
+                        $("#passWord").val("");
+                    }
+                });
+            });
+		</script>
+	</body>
+</html>

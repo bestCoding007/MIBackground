@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title class="productName"></title>
+    <link rel="shortcut icon" href="../../../img/reception/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../../css/MIReception/product_Description.css">
+    <link rel="stylesheet" href="../../../css/MIReception/universal.css">
+    <style>
+        /*中间部分样式*/
+        .div_page_main {
+            width: 100%;
+            height: 840px;
+            padding: 38px 0;
+            background: #f5f5f5;
+        }
+
+        .div_containers {
+            width: 1226px;
+            height: 840px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .div_buy_succ_box {
+            margin-bottom: 26px;
+            padding: 0 0 28px 0;
+            height: 68px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .goods-content {
+            width: 372.05px;
+            height: 64px;
+            float: left;
+        }
+
+        .goods-img {
+            float: left;
+            width: 64px;
+            height: 64px;
+        }
+
+        .good-info {
+            width: 288.05px;
+            height: 36px;
+            float: left;
+            margin-left: 20px;
+        }
+
+        .good-info h3 {
+            margin: 0;
+            color: #424242;
+            font-size: 24px;
+            font-weight: normal;
+            margin-top: 3px;
+        }
+
+        .good-info .name {
+            font-size: 14px;
+            color: #757575;
+        }
+
+        .actions {
+            width: 391.89px;
+            height: 45px;
+            float: right;
+        }
+
+        .actions .btn {
+            width: 180px;
+            margin-left: 12px;
+            margin-top: 5px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 158px;
+            height: 38px;
+            padding: 0;
+            margin: 0;
+            border: 1px solid #b0b0b0;
+            font-size: 14px;
+            line-height: 38px;
+            text-align: center;
+            color: #b0b0b0;
+            cursor: pointer;
+            -webkit-transition: all .4s;
+            transition: all .4s;
+        }
+
+        .actions .btn:hover {
+            background: white;
+        }
+
+        .actions .btn-line-gray {
+            background: none;
+        }
+
+        .btn-line-gray {
+            border-color: #b0b0b0;
+            background: #fff;
+            color: #757575;
+        }
+
+        .btn-primary {
+            background: #ff6700;
+            border-color: #ff6700;
+            color: #fff;
+            float: right;
+        }
+
+        .actions .btn-primary:hover {
+            background: #FF5722;
+        }
+
+        .xm-recommend-title {
+            width: 1226px;
+            height: 40px;
+            border-top: none;
+            height: auto;
+            position: relative;
+            margin: 0;
+            font-size: 30px;
+            font-weight: 400;
+            color: #757575;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .xm-recommend-title span {
+            position: static;
+            margin-bottom: 20px;
+            width: 100%;
+            height: auto;
+            position: absolute;
+            line-height: 40px;
+            text-align: center;
+            display: block;
+            background-color: #f5f5f5;
+        }
+
+        .xm-recommend {
+            width: 1226px;
+            height: 750px;
+            display: inline-block;
+        }
+
+        /*买购物车中的项目还买了*/
+
+        .div_row_clearfix {
+            width: 1240px;
+            margin: auto;
+            margin-left: -14px;
+            margin-top: 60px;
+        }
+
+        .div_row_commend {
+            margin-bottom: 14px;
+            width: 234px;
+            float: left;
+            margin-left: 14px;
+            min-height: 1px;
+            height: 300px;
+            background-color: #fff;
+            text-align: center;
+            position: relative;
+        }
+
+        .div_recommend_list {
+            width: 1240px;
+            height: 1256px;
+            margin: auto;
+        }
+
+        .div_dl {
+            width: 194px;
+            height: 280px;
+            padding: 0 20px;
+            margin-bottom: 0;
+            margin-top: 0;
+            list-style: none;
+        }
+
+        .div_dt {
+            padding: 40px 0 15px;
+            height: 145px;
+        }
+
+        .div_dt_img1 {
+            width: 140px;
+            height: 140px;
+        }
+
+        .div_dd {
+            width: 194px;
+            height: 18px;
+            margin-bottom: 10px;
+        }
+
+        .div_dd_a1 {
+            font-size: 14px;
+            text-align: center;
+            color: #333;
+        }
+
+        .div_dd_a2 {
+            font-size: 14px;
+            text-align: center;
+            color: #ff6700;
+        }
+
+        .div_dd2 {
+            width: 194px;
+            height: 18px;
+            font-size: 14px;
+            color: #B0B0B0;
+        }
+
+        .user-menu {
+            position: absolute;
+            display: none;
+            margin-left: 1030px;
+            z-index: 3;
+            width: 120px;
+            padding: 7px 0;
+            list-style-type: none;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .user-menu a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .user-menu li {
+            padding: 6px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="div0">
+    <!--头部导航栏-->
+    <div id="menu_nav">
+        <span class="menu_list" style="margin-left: 100px;" id="menu_list"><span class=menu_lr><a
+                href="#">小米商城</a></span></span>
+        <span class="menu_list"><span class=menu_lr><a href="#">MIUI</a></span></span>
+        <span class="menu_list"><span class=menu_lr><a href="#">lOT</a></span></span>
+        <span class="menu_list"><span class=menu_lr><a href="#">云服务</a></span></span>
+        <span class="menu_list"><span class=menu_lr><a href="#">金融</a></span></span>
+        <span class="menu_list"><span class=menu_lr><a href="#">有品</a></span></span>
+        <span class="menu_list"><span class=menu_lr><a href="#">小爱开放平台</a></span></span>
+        <span class="menu_list"><span class=menu_lr><a href="#">政企服务</a></span></span>
+        <span class="menu_list"><span class=menu_lr><a href="#">Select Region</a></span></span>
+        <span><span id="menu_right" style="margin-left: 460px"><a href="/reception/login"
+                                                                  class="userSession">登录 </a></span></span>
+        <span><span class="menu_right"><a href="register.html">注册  </a></span></span>
+        <span><span class="menu_right" style="border-right: 0px solid"><a href="#">消息通知</a></span></span>
+        <span id="cart">
+					<span id="cart_span">
+						<a href="/reception/productCart">
+							<img src="../../../img/reception/cart.png" id="cart_O"
+                                 style="width: 20px; height: 22px;margin-top: 8px;margin-left: 15px;"/>
+							<span style="color: white;margin-top: -22px;margin-left:40px;display: block;"
+                                  id="dataMsg1"></span>
+				</a>
+				</span>
+				</span>
+    </div>
+
+    <ul class="user-menu">
+        <li>
+            <a href="javascript:;" rel="nofollow" target="_blank">个人中心</a>
+        </li>
+        <li>
+            <a href="javascript:;" rel="nofollow" target="_blank">评价晒单</a>
+        </li>
+        <li>
+            <a href="javascript:;" rel="nofollow" target="_blank">我的喜欢</a>
+        </li>
+        <li>
+            <a href="javascript:;" rel="nofollow" target="_blank">小米账户</a>
+        </li>
+        <li id="backIndex">
+            <a href="javascript:;" rel="nofollow">退出登录 </a>
+        </li>
+    </ul>
+
+    <div class="div_site_head">
+        <div class="div_container">
+            <div class="div_container_logo">
+                <a href="/reception/MIIndex" class="div_container_a1"></a>
+            </div>
+            <div class="div_nav_list">
+                <div class="div_nav_category">
+                    <a href="#" class="div_nav_a1">
+								<span class="div_nav_span1">
+									全部商品分类
+								</span>
+                    </a>
+                </div>
+                <div class="div_nav_links">
+                    <a href="#" class="div_nav_a2">
+								<span class="div_nav_span2">
+									小米手机
+								</span>
+                    </a>
+                </div>
+                <div class="div_nav_links">
+                    <a href="#" class="div_nav_a2">
+								<span class="div_nav_span2">
+									红米
+								</span>
+                    </a>
+                </div>
+                <div class="div_nav_links">
+                    <a href="#" class="div_nav_a2">
+								<span class="div_nav_span2">
+									电视
+								</span>
+                    </a>
+                </div>
+                <div class="div_nav_links">
+                    <a href="#" class="div_nav_a2">
+								<span class="div_nav_span2">
+									笔记本
+								</span>
+                    </a>
+                </div>
+                <div class="div_nav_links">
+                    <a href="#" class="div_nav_a2">
+								<span class="div_nav_span2">
+									空调
+								</span>
+                    </a>
+                </div>
+                <div class="div_nav_links">
+                    <a href="#" class="div_nav_a2">
+								<span class="div_nav_span2">
+									新品
+								</span>
+                    </a>
+                </div>
+                <div class="div_nav_links">
+                    <a href="#" class="div_nav_a2">
+								<span class="div_nav_span2">
+									路由器
+								</span>
+                    </a>
+                </div>
+                <div class="div_nav_links">
+                    <a href="#" class="div_nav_a2">
+								<span class="div_nav_span2">
+									智能硬件
+								</span>
+                    </a>
+                </div>
+                <div class="div_nav_links">
+                    <a href="#" class="div_nav_a2">
+								<span class="div_nav_span2">
+									服务
+								</span>
+                    </a>
+                </div>
+                <div class="div_nav_links">
+                    <a href="#" class="div_nav_a2">
+								<span class="div_nav_span2">
+									社区
+								</span>
+                    </a>
+                </div>
+            </div>
+            <div class="div_container_input">
+                <input type="text" class="div_container_text"/>
+                <div class="s_img"><img
+                        src="../../../img/reception/s.png" id="s_img"/></div>
+            </div>
+        </div>
+    </div>
+    <!--中间部分-->
+    <div class="div_page_main">
+        <div class="div_containers">
+            <div class="div_buy_succ_box">
+                <div class="goods-content">
+                    <div class="goods-img">
+                        <img src="../../../img/reception/success.png" width="64px" height="64px"/>
+                    </div>
+                    <div class="good-info">
+                        <h3>已成功加入购物车！</h3>
+                        <span class="name" id="pName"><!--小米8 青春 全网通版 4GB内存 深空灰 64GB--></span>
+                    </div>
+
+                </div>
+                <div class="actions">
+                    <!--<p>有商品未成功加入购物车，可以在购物车中查看</p>-->
+                    <div id="backTo" class="btn btn-line-gray">返回上一级</div>
+                    <div class="btn btn-primary" id="goToCart">去购物车结算</div>
+                </div>
+            </div>
+            <h2 class="xm-recommend-title">
+                <span>买购物车中商品的人还买了</span>
+            </h2>
+            <div class="xm-recommend">
+                <div class="div_row_clearfix">
+                    <div class="div_row_commend">
+                        <div class="div_dl">
+                            <div class="div_dt">
+                                <img src="../../../img/reception/shopCar/shopCar1.jpg" class="div_dt_img1"/>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a1">小米Max2 全网通版 4GB内存 </a>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a2">1199元 </a>
+                            </div>
+                            <div class="div_dd2">
+                                7216人评价
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div_row_commend">
+                        <div class="div_dl">
+                            <div class="div_dt">
+                                <img src="../../../img/reception/shopCar/shopCar3.jpg" class="div_dt_img1"/>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a1">小米Max2 全网通版 4GB内存 </a>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a2">1199元 </a>
+                            </div>
+                            <div class="div_dd2">
+                                7216人评价
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div_row_commend">
+                        <div class="div_dl">
+                            <div class="div_dt">
+                                <img src="../../../img/reception/shopCar/shopCar4.jpg" class="div_dt_img1"/>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a1">小米Max2 全网通版 4GB内存 </a>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a2">1199元 </a>
+                            </div>
+                            <div class="div_dd2">
+                                7216人评价
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div_row_commend">
+                        <div class="div_dl">
+                            <div class="div_dt">
+                                <img src="../../../img/reception/shopCar/shopCar5.jpg" class="div_dt_img1"/>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a1">小米Max2 全网通版 4GB内存 </a>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a2">1199元 </a>
+                            </div>
+                            <div class="div_dd2">
+                                7216人评价
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div_row_commend">
+                        <div class="div_dl">
+                            <div class="div_dt">
+                                <img src="../../../img/reception/shopCar/shopCar6.jpg" class="div_dt_img1"/>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a1">小米Max2 全网通版 4GB内存 </a>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a2">1199元 </a>
+                            </div>
+                            <div class="div_dd2">
+                                7216人评价
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div_row_commend">
+                        <div class="div_dl">
+                            <div class="div_dt">
+                                <img src="../../../img/reception/shopCar/shopCar7.jpg" class="div_dt_img1"/>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a1">小米Max2 全网通版 4GB内存 </a>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a2">1199元 </a>
+                            </div>
+                            <div class="div_dd2">
+                                7216人评价
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div_row_commend">
+                        <div class="div_dl">
+                            <div class="div_dt">
+                                <img src="../../../img/reception/shopCar/shopCar8.jpg" class="div_dt_img1"/>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a1">小米Max2 全网通版 4GB内存 </a>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a2">1199元 </a>
+                            </div>
+                            <div class="div_dd2">
+                                7216人评价
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div_row_commend">
+                        <div class="div_dl">
+                            <div class="div_dt">
+                                <img src="../../../img/reception/shopCar/shopCar9.jpg" class="div_dt_img1"/>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a1">小米Max2 全网通版 4GB内存 </a>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a2">1199元 </a>
+                            </div>
+                            <div class="div_dd2">
+                                7216人评价
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div_row_commend">
+                        <div class="div_dl">
+                            <div class="div_dt">
+                                <img src="../../../img/reception/shopCar/shopCar10.jpg" class="div_dt_img1"/>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a1">小米Max2 全网通版 4GB内存 </a>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a2">1199元 </a>
+                            </div>
+                            <div class="div_dd2">
+                                7216人评价
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div_row_commend">
+                        <div class="div_dl">
+                            <div class="div_dt">
+                                <img src="../../../img/reception/shopCar/shopCar11.jpg" class="div_dt_img1"/>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a1">小米Max2 全网通版 4GB内存 </a>
+                            </div>
+                            <div class="div_dd">
+                                <a class="div_dd_a2">1199元 </a>
+                            </div>
+                            <div class="div_dd2">
+                                7216人评价
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--end-->
+        <div id="endCart" style="margin-top: 26px;margin-left: 100px;">
+            <div id="server">
+                <a href="#">
+                    <div class="ser1"><span class="iconfont" style="font-size: 28px;margin-right: 2px;">&#xe712;</span>预约维修服务
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="ser2"><span class="iconfont" style="font-size: 28px;margin-right: 2px;">&#xe70d;</span>7天无理由退货
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="ser2"><span class="iconfont" style="font-size: 28px;margin-right: 2px;">&#xe706;</span>15天免费退货
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="ser2"><span class="iconfont" style="font-size: 28px;margin-right: 2px;">&#xe6f1;</span>满150包邮
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="ser2" style="border-right: 0px solid;"><span class="iconfont"
+                                                                             style="font-size: 28px;margin-right: 2px;">&#xe709;</span>520余家售后网点
+                    </div>
+                </a>
+            </div>
+            <div id="help">
+                <div id="helpleft">
+                    <div id="copy" style="margin-top: 1px;">
+                        <p id="copy1">帮助中心</p>
+                        <a href="#">
+                            <p class="copy2" style="margin-top: -12px;">账户管理</p>
+                        </a>
+                        <a href="#">
+                            <p class="copy3">购物指南</p>
+                        </a>
+                        <a href="#">
+                            <p class="copy3">订单操作</p>
+                        </a>
+                    </div>
+                    <span class="copy4">
+							<p class="copy5">服务支持</p>
+							<a href="#"><p class="copy2">售后政策</p></a>
+							<a href="#"><p class="copy3">自助服务</p></a>
+							<a href="#"><p class="copy3">相关下载</p></a>
+						</span>
+                    <span class="copy4">
+							<p class="copy5">线下门店</p>
+							<a href="#"><p class="copy2">小米之家</p></a>
+							<a href="#"><p class="copy3">服务网点</p></a>
+							<a href="#"><p class="copy3">授权体验店</p></a>
+						</span>
+                    <span class="copy4">
+							<p class="copy5">关于小米</p>
+							<a href="#"><p class="copy2">了解小米</p></a>
+							<a href="#"><p class="copy3">加入小米</p></a>
+							<a href="#"><p class="copy3">投资者关系</p></a>
+						</span>
+                    <span class="copy4">
+							<p class="copy5">关注我们</p>
+							<a href="#"><p class="copy2">新浪微博</p></a>
+							<a href="#"><p class="copy3">官方微信</p></a>
+							<a href="#"><p class="copy3">联系我们</p></a>
+						</span>
+                    <span class="copy6">
+							<p class="copy5">特色服务</p>
+							<a href="#"><p class="copy2">F 码通道</p></a>
+							<a href="#"><p class="copy3">礼物码</p></a>
+							<a href="#"><p class="copy3">防伪查询</p></a>
+						</span>
+                </div>
+                <div id="helpright">
+                    <div id="phone_copy">
+                        <div style="font-size: 22px;color: #FF6700;margin-left: 58px;">
+                            400-100-5678
+                        </div>
+                        <div style="font-size: 12px;color: #888888;text-align: center;">
+                            周一至周日 8:00-18:00<br>（仅收市话费）
+                        </div>
+                        <a href="#" id="kf_a">
+                            <div id="kf">联系客服</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="endcopy">
+            <div id="lg">
+                <a href="/reception/MIIndex"><img src="../../../img/reception/logo.png"/></a>
+            </div>
+            <div id="co">
+					<span class="co_t"><a href="">小米商城 <span class="shu"> |</span></a>
+					</span><span class="co_t"><a href="">MIUI</a><span class="shu"> |</span></span>
+                <span class="co_t"><a href="">米家</a><span class="shu"> |</span></span><span class="co_t"><a
+                    href="">米聊</a><span class="shu"> |</span></span>
+                <span class="co_t"><a href="">多看</a><span class="shu"> |</span></span><span class="co_t"><a
+                    href="">游戏</a><span class="shu"> |</span></span>
+                <span class="co_t"><a href="">路由器</a><span class="shu"> |</span></span><span class="co_t"><a
+                    href="">米粉卡</a><span class="shu"> |</span></span>
+                <span class="co_t"><a href="">政企服务</a><span class="shu"> |</span></span><span class="co_t"><a href="">小米天猫店</a><span
+                    class="shu"> |</span></span>
+                <span class="co_t"><a href="">隐私政策</a><span class="shu"> |</span></span><span class="co_t"><a href="">问题反馈</a><span
+                    class="shu"> |</span></span>
+                <span class="co_t"><a href="">廉政举报</a><span class="shu"> |</span></span><span class="co_t"><a href="">Select Region</a><span
+                    class="shu"> |</span></span>
+                <span class="co_s"><br>©mi.com 京ICP证110507号 <a href="" class="shu2" style="color: #CCCCCC;">京ICP备10046444号 </a><a
+                        href="" class="shu2" style="color: #CCCCCC;">京公网安备11010802020134号</a> <a href="" class="shu2"
+                                                                                                 style="color: #CCCCCC;">京网文[2017]1530-131号</a><br></span>
+                <span class="co_s">违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</span>
+            </div>
+            <span id="im_co">
+						<img src="../../../img/reception/co1.png" style="width: 100px;height: 28px;"/>
+						<img src="../../../img/reception/co2.png" style="width: 90px;height: 28px;"/>
+						<img src="../../../img/reception/co3.png" style="width: 90px;height: 28px;"/>
+						<img src="../../../img/reception/co4.png" style="width: 90px;height: 28px;"/>
+						<img src="../../../img/reception/co5.png" style="width: 90px;height: 28px;"/>
+				</span>
+            <span id="mih">探索黑科技，小米为发烧而生！</span>
+        </div>
+    </div>
+</div>
+
+<script src="../../../js/MIReception/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    function get(par) {
+        //获取当前URL
+        var local_url = document.location.href;
+
+        //截取get字符串
+        var getstr = local_url.substr(local_url.indexOf('?') + 1)
+
+        //解析成get数组
+        var get = getstr.split('&')
+
+        //查找要找到参数（par）
+        for (var i in get) {
+            if (get[i].indexOf(par + '=') >= 0) {
+                return get[i].replace(par + '=', '');
+            }
+        }
+
+        //如果找不到返回false
+        return false;
+    }
+
+    /*根据编号取值*/
+    ;(function () {
+        $.ajax({
+            url: '/product/getProductId',
+            type: 'GET',
+            data: {productId: get('productId')},
+            success: function (data) {
+                $("#pName").text(data.data.productName);
+                $(".productName").text(data.data.productName + " 立即购买-小米商城");
+                /*返回商品详情页，传值回去*/
+                $("#backTo").click(function () {
+                    location.href = "/reception/productDescription?productId=" + get('productId');
+                });
+            }
+        })
+    }());
+
+    /*取到当前用户登录信息*/
+    function getUser() {
+        $.ajax({
+            url: '/users/getUserSession',
+            type: 'GET',
+            dataType: 'json',
+        }).done(function (data) {
+            if (data.code == 1) {
+                if (data.msg != null) {
+                    $(".userSession").html(data.msg + "<span style='font-size: 14px;'> &or; </span>");
+                    //登录成功后a标签的href改变
+                    $(".userSession").prop("href", "javascript:;");
+
+                    //退出登录，返回主页
+                    $("#backIndex").click(function () {
+                        $.ajax({
+                            url: "/users/backIndex",
+                            type: "GET",
+                            success: function () {
+                                location.href = "/reception/MIIndex";
+                                return true;
+                            }
+                        })
+                    });
+                } else {
+                    $(".userSession").html("登录 ");
+                }
+            }
+        })
+    };
+    getUser();
+
+    /*传值到productCart页*/
+    $("#goToCart").click(function () {
+        location.href = "/reception/productCart?productId=" + get('productId');
+    });
+
+    //查询购物车商品总数
+    (function () {
+        $.ajax({
+            url: "/lineItem/getLineItem",
+            type: "GET",
+            dataType: "json"
+        }).done(function (data) {
+            if (data.data.length > 0) {
+                $("#dataMsg1").text("购物车(" + data.data.length + ")");
+                $("#cart").css("background", "#ff5800");
+            } else {
+                $("#dataMsg1").text("购物车（0）");
+            }
+        });
+    }());
+
+    //登录的悬停
+    ;(function () {
+        $(".user-menu").on("mouseover mouseout", function (event) {
+            if (event.type == "mouseover") {
+                //鼠标悬停
+                $(".user-menu").css('display', 'block');
+            } else if (event.type == "mouseout") {
+                //鼠标离开
+                $(".user-menu").css('display', 'none');
+            }
+        })
+    }())
+
+    //登录的悬停
+    ;(function () {
+        $(".userSession").on("mouseover", function (event) {
+            if (event.type == "mouseover") {
+                //鼠标悬停
+                $(".user-menu").css('display', 'block');
+            }
+        })
+    }())
+</script>
+</body>
+</html>

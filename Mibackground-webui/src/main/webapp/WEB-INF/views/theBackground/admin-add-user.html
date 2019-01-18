@@ -1,0 +1,268 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>小米后台管理</title>
+    <meta name="description" content="这是一个 user 页面">
+    <meta name="keywords" content="user">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="stylesheet" href="../css/assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="../css/assets/css/admin.css">
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+    以获得更好的体验！</p>
+<![endif]-->
+
+<header class="am-topbar admin-header">
+    <div class="am-topbar-brand">
+        <strong>MI</strong>
+        <small>小米手机商城后台管理</small>
+    </div>
+
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+            data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
+            class="am-icon-bars"></span></button>
+
+    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+        <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+            <!--<li><a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a></li>-->
+            <li><a href="/reception/MIIndex"><span class="am-icon-exchange"></span> 前台管理 </a></li>
+            <li class="am-dropdown" data-am-dropdown>
+                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                    <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
+                </a>
+                <ul class="am-dropdown-content">
+                    <li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
+                    <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
+                    <li onclick="safetyOFF()"><a href="javascript:void(0)"><span class="am-icon-power-off"></span>
+                        退出</a></li>
+                </ul>
+            </li>
+            <li onclick="toFullscreen()"><a href="javascript:;"><span class="am-icon-arrows-alt"></span> <span
+                    class="admin-fullText">开启全屏</span></a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="am-cf admin-main">
+    <!-- sidebar start -->
+    <div class="admin-sidebar">
+        <ul class="am-list admin-sidebar-list">
+            <li><a href="/background/theBackground"><span class="am-icon-home"></span> 首页</a></li>
+            <li class="admin-parent">
+                <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-user-md"></span>
+                    管理员操作<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                    <!--<li><a href="admin-user.html" class="am-cf"><span class="am-icon-check"></span> 个人资料<span
+                            class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>-->
+                    <li><a href="/background/addUser" class="am-cf"><span class="am-icon-leaf"></span> 添加管理员</a>
+                    </li>
+                    <li><a href="/background/reset" class="am-cf"><span class="am-icon-adn"></span> 修改密码</a></li>
+                    <li><a href="/background/goodsEntry" class="am-cf"><span class="am-icon-edit"></span> 商品录入</a></li>
+                </ul>
+            <li onclick="safetyOFF()"><a href="javascript:void(0)"><span class="am-icon-sign-out"></span> 注销</a></li>
+        </ul>
+        <div class="am-panel am-panel-default admin-sidebar-panel">
+            <div class="am-panel-bd">
+                <p><span class="am-icon-bookmark"></span> 公告</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;动作可以慢，但战略一定要正确，看准了再跟上去！—— Driver_Chen</p>
+            </div>
+        </div>
+
+        <div class="am-panel am-panel-default admin-sidebar-panel">
+            <div class="am-panel-bd">
+                <p><span class="am-icon-tag"></span> wiki</p>
+                <p>Welcome to the Driver_Chen</p>
+            </div>
+        </div>
+    </div>
+    <!-- sidebar end -->
+
+    <!-- form表单 -->
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">添加管理员</strong> /
+                <small>Add Admin</small>
+            </div>
+        </div>
+
+        <hr/>
+
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8" style="display: none;">
+                <div class="am-panel am-panel-default">
+                    <div class="am-panel-bd">
+                        <div class="am-g">
+                            <div class="am-u-md-4">
+                                <img class="am-img-circle am-img-thumbnail" alt=""/>
+                            </div>
+                            <div class="am-u-md-8">
+                                <p>你可以使用<a href="#">gravatar.com</a>提供的头像或者使用本地上传头像。 </p>
+                                <form class="am-form">
+                                    <div class="am-form-group">
+                                        <input type="file" id="user-pic">
+                                        <p class="am-form-help">请选择要上传的文件...</p>
+                                        <button type="button" class="am-btn am-btn-primary am-btn-xs">保存</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-2" style="height: 436px;margin-top: 50px;">
+                <form class="am-form am-form-horizontal" id="formData">
+                    <div class="am-form-group">
+                        <label for="administratorUsername" class="am-u-sm-3 am-form-label">用户名 / UserName</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" id="administratorUsername" name="administratorUsername" placeholder="用户名 / UserName">
+                            <small>输入你的用户名，让我们记住你。</small>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="administratorPassword" class="am-u-sm-3 am-form-label">密码 / PassWord</label>
+                        <div class="am-u-sm-9">
+                            <input type="password" id="administratorPassword" name="administratorPassword" placeholder="输入你的密码 / PassWord">
+                            <small class="oldPWD">请记住密码哦...</small>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="administratorNewPassword" class="am-u-sm-3 am-form-label">确认密码 / PassWord</label>
+                        <div class="am-u-sm-9">
+                            <input type="password" id="administratorNewPassword" name="administratorNewPassword" placeholder="再次输入你的密码 / PassWord">
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="administratorName" class="am-u-sm-3 am-form-label">昵称 / NickName</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" id="administratorName" name="administratorName" placeholder="输入你的昵称">
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <div class="am-u-sm-9 am-u-sm-push-3">
+                            <button type="button" class="am-btn am-btn-primary" onclick="addAdministrator()">增加管理员</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <hr>
+    <p class="am-padding-left">© 2018 AllMobilize, Inc. Licensed under MIT license.</p>
+</footer>
+
+<!--[if lt IE 9]>
+<script src="../js/js/jquery-3.3.1.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="../js/js/polyfill/rem.min.js"></script>
+<script src="../js/js/polyfill/respond.min.js"></script>
+<script src="../js/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="../js/js/jquery.min.js"></script>
+<script src="../js/js/amazeui.min.js"></script>
+<!--<![endif]-->
+<script src="../js/js/app.js"></script>
+<script type="text/javascript">
+    /*开启全屏*/
+    function toFullscreen() {
+        var de = document.documentElement;
+        if (de.requestFullscreen) {
+            de.requestFullscreen();
+        } else if (de.mozRequestFullScreen) {
+            de.mozRequestFullScreen();
+        } else if (de.webkitRequestFullScreen) {
+            de.webkitRequestFullScreen();
+        }
+    }
+
+    //密码验证
+    $("#administratorPassword").blur(function (){
+        var administratorPassword=$("#administratorPassword").val();
+        /*密码必须要包含字母数字和!@#$%^&* 这几个特殊字符并且必须为8-20位之间*/
+        /* var regExp = /^([a-zA-Z]+[0-9]+[!@#$%^&*]+)|([a-zA-Z]+[!@#$%^&*]+[0-9]+)|([0-9]+[!@#$%^&*]+[a-zA-Z]+)|([0-9]+[a-zA-Z]+[!@#$%^&*]+)|([!@#$%^&*]+[a-zA-Z]+[0-9]+)|([!@#$%^&*]+[0-9]+[a-zA-Z]+)$/;*/
+        var regExp = /^[0-9a-zA-Z!@#$%^&*]{6,16}$/;
+        if (regExp.test(administratorPassword)){
+            $(".oldPWD").html('<span style="color: green;">√密码格式正确</span>');
+        }else if (administratorPassword==""){
+            $(".oldPWD").html('<span style="color: red;">密码不能为空！</span>');
+        }else{
+            $(".oldPWD").html('<span style="color: red;">×密码只能由字母数字!@#$%^&*组成,且必须为6-16位</span>');
+        }
+    });
+    //密码验证
+    $("#administratorNewPassword").blur(function (){
+        var administratorPassword=$("#administratorPassword").val();
+        var administratorNewPassword=$("#administratorNewPassword").val();
+        /*var regExp = new RegExp("^.{5,15}$");*/
+        var regExp = /^[0-9a-zA-Z!@#$%^&*]{6,16}$/;
+        /*密码必须要包含字母数字和!@#$%^&* 这几个特殊字符并且必须为8-20位之间*/
+        /*var regExp = /^([a-zA-Z]+[0-9]+[!@#$%^&*]+)|([a-zA-Z]+[!@#$%^&*]+[0-9]+)|([0-9]+[!@#$%^&*]+[a-zA-Z]+)|([0-9]+[a-zA-Z]+[!@#$%^&*]+)|([!@#$%^&*]+[a-zA-Z]+[0-9]+)|([!@#$%^&*]+[0-9]+[a-zA-Z]+)$/;*/
+        if(administratorPassword==administratorNewPassword){
+            if (regExp.test(administratorNewPassword)){
+                $(".oldPWD").html('<span style="color: green;">√两次密码输入一致</span>');
+            }else if (administratorNewPassword==""){
+                $(".oldPWD").html("<span>密码不能为空！</span>");
+            }else{
+                $(".oldPWD").html('<span style="color: red;">×密码只能由字母数字!@#$%^&*组成,且必须为6-16位</span>');
+            }
+        }
+        else{
+            $(".oldPWD").html("<span style='color: red;'>密码不匹配</span>");
+        }
+    });
+
+    /*列表/导航栏退出后台管理系统*/
+    function safetyOFF() {
+        if (confirm("您真的要退出后台管理系统吗？")) {
+            $.ajax({
+                url: "/background/safetyOFF",
+                type: "GET",
+                success: function () {
+                    //去掉前进后退功能
+                    //location.replace("/administrator/login")
+                    location.replace("/background/theBackground");
+                    return true;
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+
+    /*添加后台管理员*/
+    function addAdministrator() {
+        $.ajax({
+            url:"/administrator/addAdministrator",
+            type:"POST",
+            data:{administratorUsername:$("#administratorUsername").val(),administratorPassword:$("#administratorPassword").val(),administratorNewPassword:$("#administratorNewPassword").val(),administratorName:$("#administratorName").val()},
+            success:function (data) {
+                if (data.code==1){
+                    alert("添加管理员成功!")
+                }else {
+                    alert("添加管理员失败!")
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>

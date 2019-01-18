@@ -1,0 +1,363 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>小米后台管理</title>
+    <meta name="description" content="这是一个 user 页面">
+    <meta name="keywords" content="user">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="stylesheet" href="../css/assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="../css/assets/css/admin.css">
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+    以获得更好的体验！</p>
+<![endif]-->
+
+<header class="am-topbar admin-header">
+    <div class="am-topbar-brand">
+        <strong>MI</strong>
+        <small>小米手机商城后台管理</small>
+    </div>
+
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+            data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
+            class="am-icon-bars"></span></button>
+
+    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+        <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+            <!--<li><a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a></li>-->
+            <li><a href="/reception/MIIndex"><span class="am-icon-exchange"></span> 前台管理 </a></li>
+            <li class="am-dropdown" data-am-dropdown>
+                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                    <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
+                </a>
+                <ul class="am-dropdown-content">
+                    <li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
+                    <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
+                    <li onclick="safetyOFF()"><a href="javascript:void(0)"><span class="am-icon-power-off"></span>
+                        退出</a></li>
+                </ul>
+            </li>
+            <li onclick="toFullscreen()"><a href="javascript:;"><span class="am-icon-arrows-alt"></span> <span
+                    class="admin-fullText">开启全屏</span></a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="am-cf admin-main">
+    <!-- sidebar start -->
+    <div class="admin-sidebar">
+        <ul class="am-list admin-sidebar-list">
+            <li><a href="/background/theBackground"><span class="am-icon-home"></span> 首页</a></li>
+            <li class="admin-parent">
+                <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-user-md"></span>
+                    管理员操作<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+                    <!--<li><a href="admin-user.html" class="am-cf"><span class="am-icon-check"></span> 个人资料<span
+                            class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>-->
+                    <li><a href="/background/addUser" class="am-cf"><span class="am-icon-leaf"></span> 添加管理员</a></li>
+                    <li><a href="/background/reset" class="am-cf"><span class="am-icon-adn"></span> 修改密码</a></li>
+                    <li><a href="/background/goodsEntry" class="am-cf"><span class="am-icon-edit"></span> 商品录入</a></li>
+                </ul>
+            <li onclick="safetyOFF()"><a href="javascript:void(0)"><span class="am-icon-sign-out"></span> 注销</a></li>
+        </ul>
+        <div class="am-panel am-panel-default admin-sidebar-panel">
+            <div class="am-panel-bd">
+                <p><span class="am-icon-bookmark"></span> 公告</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;动作可以慢，但战略一定要正确，看准了再跟上去！—— Driver_Chen</p>
+            </div>
+        </div>
+
+        <div class="am-panel am-panel-default admin-sidebar-panel">
+            <div class="am-panel-bd">
+                <p><span class="am-icon-tag"></span> wiki</p>
+                <p>Welcome to the Driver_Chen</p>
+            </div>
+        </div>
+    </div>
+    <!-- sidebar end -->
+
+    <!-- form表单 -->
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-cf am-padding">
+                <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">商品录入</strong> /
+                    <small>Goods Entry</small>
+                </div>
+            </div>
+        </div>
+        <hr/>
+
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
+                <div class="am-panel am-panel-default">
+                    <div class="am-panel-bd">
+                        <div class="am-g">
+                            <div class="am-u-md-4">
+                                <img id="cropedBigImg" value='custom' alt="" data-address='' title="自定义背景"
+                                     src="../img/more-app.jpg"/>
+                            </div>
+                            <div class="am-u-md-8">
+                                <form class="container" enctype="multipart/form-data" method="post" id='formBox'
+                                      name="form">
+                                    <input type="file" id="chooseImage" name="files" id="files">
+                                    <p class="am-form-help">请选择要上传的图片...</p>
+                                    <button type="button" class="am-btn am-btn-primary am-btn-xs" id="editPhoto"/>
+                                    保存</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <span style="margin-left:0px;color: red;font-size: 16px">温馨提示：录入商品请记得先上传图片。</span>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4" style="height: 569px;">
+                <form class="am-form am-form-horizontal">
+                    <div class="am-form-group">
+                        <div class="am-u-sm-3 am-form-label" style="font-weight: bold;">商品类别 / GoodStyle</div>
+                        <div class="am-u-sm-9">
+                            <select name="catId" id="catId">
+                                <option value="">--请选择型号--</option>
+                                <option value="1">红米-mix系列</option>
+                                <option value="2">红米-max系列</option>
+                                <option value="3">小米-note系列-移动版</option>
+                                <option value="4">小米-note系列-联通版</option>
+                                <option value="5">小米-note系列-电信版</option>
+                                <option value="6">小米-note系列-全网通低配</option>
+                                <option value="7">小米-note系列-全网通高配</option>
+                                <option value="8">小米-note系列-双网通低配</option>
+                                <option value="9">小米-note系列-双网通高配</option>
+                                <option value="10">小米-mix系列</option>
+                                <option value="11">小米-max系列</option>
+                                <option value="12">红米-pro系列</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="productName" class="am-u-sm-3 am-form-label">商品名称 / GoodName</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" id="productName" name="productName">
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="productCount" class="am-u-sm-3 am-form-label">库存量 / Stock</label>
+                        <div class="am-u-sm-9">
+                            <input type="number" id="productCount" name="productCount">
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="oldPrice" class="am-u-sm-3 am-form-label">价格 / prices</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" id="oldPrice" name="oldPrice">
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="productColor" class="am-u-sm-3 am-form-label">颜色 / Color</label>
+                        <div class="am-u-sm-9">
+                            <select name="productColor" id="productColor">
+                                <option value="">--请选择颜色--</option>
+                                <option value="黑">黑</option>
+                                <option value="红">红</option>
+                                <option value="金">金</option>
+                                <option value="白">白</option>
+                                <option value="蓝">蓝</option>
+                                <option value="银">银</option>
+                                <option value="透明">透明</option>
+                                <option value="暗红">暗红</option>
+                                <option value="玫瑰红">玫瑰红</option>
+                                <option value="赤焰红">赤焰红</option>
+                                <option value="樱花粉">樱花粉</option>
+                                <option value="炫酷黑">炫酷黑</option>
+                                <option value="极夜黑">极夜黑</option>
+                                <option value="曜石黑">曜石黑</option>
+                                <option value="宝石蓝">宝石蓝</option>
+                                <option value="巴里蓝">巴里蓝</option>
+                                <option value="冰川蓝">冰川蓝</option>
+                                <option value="梦幻蓝">梦幻蓝</option>
+                                <option value="象牙白">象牙白</option>
+                                <option value="玫瑰金">玫瑰金</option>
+                                <option value="流沙金">流沙金</option>
+                                <option value="暮光金">暮光金</option>
+                                <option value="铂银灰">铂银灰</option>
+                                <option value="深空灰">深空灰</option>
+                                <option value="苍穹灰">苍穹灰</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="productDesc" class="am-u-sm-3 am-form-label">简介 / introduction</label>
+                        <div class="am-u-sm-9">
+                            <input type="text" id="productDesc" name="productDesc">
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label class="am-u-sm-3 am-form-label">新品 / New Product</label>
+                        <div class="am-u-sm-9">
+                            <input type="radio" id="isNewProduct" name="isNewProduct" value="1"
+                                   style="margin-top:12px;width: 20px;height: 20px;">
+                            <span style="font-size: 22px;">是</span>
+                            <input type="radio" id="isNewProduct2" name="isNewProduct" value="0"
+                                   style="margin-top:12px;width: 20px;height: 20px;">
+                            <span style="font-size: 22px;">否</span>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label class="am-u-sm-3 am-form-label">热门 / Hot </label>
+                        <div class="am-u-sm-9">
+                            <input type="radio" id="isHotProduct" name="isHotProduct" value="1"
+                                   style="margin-top:12px;width: 20px;height: 20px;">
+                            <span style="font-size: 22px;">是</span>
+                            <input type="radio" id="isHotProduct2" name="isHotProduct" value="0"
+                                   style="margin-top:12px;width: 20px;height: 20px;">
+                            <span style="font-size: 22px;">否</span>
+                        </div>
+                    </div>
+
+                    <div class="am-form-group">
+                        <div class="am-u-sm-9 am-u-sm-push-3">
+                            <button type="button" class="am-btn am-btn-primary" onclick="addGoods()">商品录入</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <hr>
+    <p class="am-padding-left">© 2018 AllMobilize, Inc. Licensed under MIT license.</p>
+</footer>
+
+<!--[if lt IE 9]>
+<script src="../js/js/jquery-3.3.1.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="../js/js/polyfill/rem.min.js"></script>
+<script src="../js/js/polyfill/respond.min.js"></script>
+<script src="../js/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="../js/js/jquery.min.js"></script>
+<script src="../js/js/amazeui.min.js"></script>
+<!--<![endif]-->
+<script src="../js/js/app.js"></script>
+<script type="text/javascript">
+    /*开启全屏*/
+    function toFullscreen() {
+        var de = document.documentElement;
+        if (de.requestFullscreen) {
+            de.requestFullscreen();
+        } else if (de.mozRequestFullScreen) {
+            de.mozRequestFullScreen();
+        } else if (de.webkitRequestFullScreen) {
+            de.webkitRequestFullScreen();
+        }
+    }
+
+    /*列表/导航栏退出后台管理系统*/
+    function safetyOFF() {
+        if (confirm("您真的要退出后台管理系统吗？")) {
+            $.ajax({
+                url: "/background/safetyOFF",
+                type: "GET",
+                success: function () {
+                    //去掉前进后退功能
+                    //location.replace("/administrator/login")
+                    location.replace("/background/theBackground");
+                    return true;
+                }
+            })
+        } else {
+            return false;
+        }
+    }
+
+    /*添加后台管理员*/
+    function addGoods() {
+        /*获取单选按钮选中的值*/
+        $.ajax({
+            url: "/product/addGoods",
+            type: "POST",
+            data: {
+                catId: $("#catId").val(),
+                productName: $("#productName").val(),
+                productCount: $("#productCount").val(),
+                shopId: 1,
+                oldPrice: $("#oldPrice").val(),
+                productColor: $("#productColor").val(),
+                productDesc: $("#productDesc").val(),
+                isNewProduct: $("input[name=isNewProduct]:checked").val(),
+                isHotProduct: $("input[name=isHotProduct]:checked").val()
+            },
+            success: function (data) {
+                if (data.code == 1) {
+                    alert("商品录入成功!")
+                }
+            }
+        })
+    }
+
+    /*获取图片*/
+    $('#chooseImage').on('change', function () {
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase();
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        }
+        $('#cropedBigImg').attr('src', filePath);
+        $('#loding').show();
+    });
+    $('#chooseImage').on('change', function () {
+        var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+            fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+            src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+
+        // 检查是否是图片
+        if (!fileFormat.match(/.png|.jpg|.jpeg/)) {
+            error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+            return;
+        }
+
+        $('#cropedBigImg').attr('src', src);
+    });
+
+    /*上传修改的图片*/
+    $("body").on("click",'#editPhoto',function () {
+        $.ajax({
+            url:"/product/fileSave",
+            type:"POST",
+            cache:false,
+            data:new FormData($("#formBox")[0]),
+            async:false,
+            processData:false,
+            contentType:false,
+            success:function () {
+                alert("图片上传成功！");
+            },error:function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("网络错误，请重试！！"+XMLHttpRequest+"  "+textStatus+"  "+errorThrown);
+            }
+        })
+    })
+</script>
+</body>
+</html>

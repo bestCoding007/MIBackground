@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyangwen.mibackground.dao.UsersDao">
+    <!--id应该是接口中的方法，结果类型如没有配置别名则应该使用全名称 -->
+    <!--配置商品信息表和数据库之间的映射关系-->
+    <resultMap id="UsersMap" type="Users">
+            <id property="userId" column="userId"></id>
+            <result property="uName" column="uName"></result>
+            <result property="passWord" column="passWord"></result>
+            <result property="userLevel" column="userLevel"></result>
+            <result property="userTime" column="userTime"></result>
+            <result property="nickname" column="nickname"></result>
+            <result property="userSex" column="userSex"></result>
+            <result property="userAge" column="userAge"></result>
+            <result property="userPhone" column="userPhone"></result>
+            <result property="userAddress" column="userAddress"></result>
+            <result property="userEmail" column="userEmail"></result>
+            <result property="userPhoto" column="userPhoto"></result>
+    </resultMap>
+
+    <!--用户信息查询-->
+    <select id="usersLimit"  resultType="Users">
+        select * from Users
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="uName!=null and uName!=''">
+                and uName like concat(concat('%',#{uName}),'%')
+            </if>
+            <if test="nickname!=null and nickname!=''">
+                and nickname like concat(concat('%',#{nickname}),'%')
+            </if>
+            <if test="userLevel!=null and userLevel!=''">
+                and userLevel like concat(concat('%',#{userLevel}),'%')
+            </if>
+            <if test="userTime!=null and userTime!=''">
+                and userTime like concat(concat('%',#{userTime}),'%')
+            </if>
+            <if test="userSex!=null and userSex!=''">
+                and userSex like concat(concat('%',#{userSex}),'%')
+            </if>
+            <if test="userAge!=null and userAge!=''">
+                and userAge like concat(concat('%',#{userAge}),'%')
+            </if>
+            <if test="userPhone!=null and userPhone!=''">
+                and userPhone like concat(concat('%',#{userPhone}),'%')
+            </if>
+            <if test="userAddress!=null and userAddress!=''">
+                and userAddress like concat(concat('%',#{userAddress}),'%')
+            </if>
+            <if test="userEmail!=null and userEmail!=''">
+                and userEmail like concat(concat('%',#{userEmail}),'%')
+            </if>
+        </trim>
+        LIMIT #{pageNo},#{pageSize}
+    </select>
+
+    <!--(账号、密码登录)前台登录查询用户名密码是否相同-->
+    <!--<select id="receptionLogin"  resultType="java.lang.Integer">
+        select count(*) from users where uName=#{uName} and passWord=#{passWord}
+    </select>-->
+    <select id="receptionLogin"  resultType="java.lang.Integer">
+        select count(*) from users
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="uName!=null and uName !=''">
+                or uName like concat(concat('%',#{uName}),'%')
+            </if>
+            <if test="uName!=null and uName !=''">
+                or userPhone like concat(concat('%',#{uName}),'%')
+            </if>
+            <if test="passWord!=null and passWord !=''">
+                and passWord like concat(concat('%',#{passWord}),'%')
+            </if>
+        </trim>
+    </select>
+
+    <!--短信验证注册-->
+    <insert id="registerVerify" parameterType="Users">
+        insert into users (userPhone,passWord) values (#{userPhone},#{passWord});
+    </insert>
+
+    <!--用户名注册-->
+    <insert id="register" parameterType="Users">
+        insert into users (uName,passWord) values (#{uName},#{passWord});
+    </insert>
+
+    <!--查询出订单页的用户-->
+    <select id="getUser" resultType="Users">
+        select nickname,userPhone,userAddress from users where userId = #{userId};
+    </select>
+
+    <!--查询confirmAnOrder页面的用户信息-->
+    <select id="selectUserInfo" resultType="Users">
+        select nickname,userPhone,userAddress from users
+        where uName = #{uName}
+    </select>
+
+   <!-- &lt;!&ndash;添加地址&ndash;&gt;
+    <insert id="addInfo" parameterType="Users">
+        insert into users (uName,passWord) values (#{userPhone},#{passWord});
+    </insert>-->
+</mapper>

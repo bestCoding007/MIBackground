@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyangwen.mibackground.dao.UserInfoDao">
+    <!--id应该是接口中的方法，结果类型如没有配置别名则应该使用全名称 -->
+    <!--配置商品信息表和数据库之间的映射关系-->
+    <resultMap id="UserInfoMap" type="UserInfo">
+        <id column="userInfoId" property="userInfoId"></id>
+        <result column="userId" property="userId"></result>
+        <result column="uName" property="uName"></result>
+        <result column="userComment" property="userComment"></result>
+        <result column="userNewComment" property="userNewComment"></result>
+        <result column="userTime" property="userTime"></result>
+        <result column="merchant" property="merchant"></result>
+        <!--映射关系，指定属性与属性的类型 id里的column是顾客表（customer）的外键-->
+        <association property="usersMap" javaType="Users">
+            <id property="userId" column="userId"></id>
+            <result property="uName" column="uName"></result>
+            <result property="passWord" column="passWord"></result>
+            <result property="userLevel" column="userLevel"></result>
+            <result property="userTime" column="userTime"></result>
+            <result property="nickname" column="nickname"></result>
+            <result property="userSex" column="userSex"></result>
+            <result property="userAge" column="userAge"></result>
+            <result property="userPhone" column="userPhone"></result>
+            <result property="userAddress" column="userAddress"></result>
+            <result property="userEmail" column="userEmail"></result>
+            <result property="userPhoto" column="userPhoto"></result>
+        </association>
+    </resultMap>
+
+    <!--评论分页-->
+    <select id="commentLimit"  resultType="UserInfo">
+        select * from UserInfo
+            <trim prefix="where" prefixOverrides="and|or">
+                <if test="userInfoId!=null and userInfoId!=''">
+                    and userInfoId like concat(concat('%',#{userInfoId}),'%')
+                </if>
+                <if test="userId!=null and userId!=''">
+                    and userId like concat(concat('%',#{userId}),'%')
+                </if>
+                <if test="uName!=null and uName!=''">
+                    and uName like concat(concat('%',#{uName}),'%')
+                </if>
+                <if test="userComment!=null and userComment!=''">
+                    and userComment like concat(concat('%',#{userComment}),'%')
+                </if>
+                <if test="userNewComment!=null and userNewComment!=''">
+                    and userNewComment like concat(concat('%',#{userNewComment}),'%')
+                </if>
+                <if test="userTime!=null and userTime!=''">
+                    and userTime like concat(concat('%',#{userTime}),'%')
+                </if>
+                <if test="merchant!=null and merchant!=''">
+                    and merchant like concat(concat('%',#{merchant}),'%')
+                </if>
+            </trim>
+         LIMIT #{pageNo},#{pageSize}
+    </select>
+
+    <!--根据ID删除一条数据-->
+    <delete id="delById" parameterType="int">
+        delete from UserInfo where userInfoId=#{userInfoId}
+    </delete>
+
+    <!--根据ID删除循环多条数据-->
+    <delete id="deleteByIds">
+        delete from UserInfo
+        where userInfoId in
+        <foreach collection="ids" open="(" item="userInfoId" separator="," close=")">
+            #{userInfoId}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,175 @@
+body,
+html,
+div,
+span,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background: #F9F9F9;
+}
+
+#controller {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 1349px;
+    height: 548px;
+}
+
+#main {
+    margin: 0 auto;
+    background: #fff;
+    width: 854px;
+    height: 548px;
+    font-size: 14px;
+}
+
+.m1 {
+    position: absolute;
+    margin: auto;
+    left: 47.6%;
+}
+
+#mihao {
+    position: absolute;
+    font-size: 30px;
+    font-weight: normal;
+    width: 854px;
+    height: 40px;
+    margin-top: 90px;
+    text-align: center;
+}
+
+#phone {
+    width: 330px;
+    height: 250px;
+    position: absolute;
+    margin-top: 168px;
+    margin-left: 260px;
+}
+
+#uName {
+    width: 328px;
+    height: 38px;
+    border: 1px solid #e8e8e8;
+    cursor: pointer;
+    line-height: 40px;
+    color: #555;
+    margin-top: 10px;
+    float: left;
+}
+
+#su {
+    width: 330px;
+    height: 36px;
+    display: inline-block;
+    margin-top: 8px;
+}
+
+#san {
+    width: 0;
+    height: 0;
+    border-width: 5px 5px 0;
+    border-style: solid;
+    border-color: #9d9d9d transparent transparent;
+    position: absolute;
+    margin-top: -22px;
+    margin-left: 44px;
+}
+
+#passWord {
+    width: 328px;
+    margin-top: 10px;
+    height: 36px;
+    border: 1px solid #e8e8e8;
+    color: #666;
+}
+
+#registerUser {
+    width: 330px;
+    height: 42px;
+    background: #ff6700;
+    border: none;
+    margin-top: 29px;
+    color: white;
+}
+
+#end_copy {
+    position: absolute;
+    margin-top: 488px;
+    text-align: center;
+    width: 854px;
+    color: #666;
+}
+
+.xs {
+    color: black;
+    font-weight: bold;
+}
+
+#end {
+    width: 1349px;
+    margin: 0 auto;
+}
+
+#copy {
+    padding-top: 20px;
+    text-align: center;
+    width: 1349px;
+}
+
+#copy a {
+    font-size: 14px;
+    color: #757575;
+    margin: 10px;
+}
+
+#copy a:hover {
+    color: black;
+}
+
+#copy2 {
+    text-align: center;
+    color: #757575;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.y {
+    color: #757575;
+}
+
+#copy2 a:visited {
+    color: #757575;
+}
+
+.jin {
+    color: #757575;
+}
+
+.phoneRegister a{
+    color: #ff6700;
+    text-decoration: none;
+}
+
+.phoneRegister a:visited{
+    color: #ff6700;
+    text-decoration: none;
+}
+

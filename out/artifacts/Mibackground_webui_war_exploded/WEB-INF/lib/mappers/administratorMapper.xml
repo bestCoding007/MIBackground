@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyangwen.mibackground.dao.AdministratorDao">
+    <!--id应该是接口中的方法，结果类型如没有配置别名则应该使用全名称 -->
+    <!--配置商品信息表和数据库之间的映射关系-->
+    <resultMap id="AdministratorMap" type="Administrator">
+        <id column="administratorId" property="administratorId"></id>
+        <result column="administratorName" property="administratorName"></result>
+        <result column="administratorUsername" property="administratorUsername"></result>
+        <result column="administratorPassword" property="administratorPassword"></result>
+        <result column="administratorNewPassword" property="administratorNewPassword"></result>
+        <result column="administratorPhoto" property="administratorPhoto"></result>
+    </resultMap>
+
+    <!--查询用户名密码是否相同-->
+    <select id="loginSelect"  resultType="java.lang.Integer">
+        select count(*) from Administrator where administratorUsername=#{administratorUsername} and administratorPassword=#{administratorPassword}
+    </select>
+
+    <!--查询管理员-->
+    <select id="getAllAdministrators"  resultType="Administrator">
+        select administratorUsername,administratorPassword from Administrator
+    </select>
+
+    <!--添加管理员-->
+    <insert id="addAdministrator" parameterType="Administrator">
+        insert into Administrator(administratorName,administratorUsername,administratorPassword,administratorNewPassword,administratorPhoto)
+        values(#{administratorName},#{administratorUsername},#{administratorPassword},#{administratorNewPassword},#{administratorPhoto})
+    </insert>
+
+    <!--修改密码-->
+    <update id="editAdministrator" parameterType="Administrator">
+        update Administrator set administratorPassword=#{administratorPassword},administratorNewPassword=#{administratorNewPassword} where administratorName=#{administratorName}
+    </update>
+
+    <!--&lt;!&ndash;单删除&ndash;&gt;
+    <delete id="delById" parameterType="int">
+        delete from users where id=#{id}
+    </delete>
+
+    &lt;!&ndash;多删除&ndash;&gt;
+    <delete id="deleteByIds">
+        delete from users
+        where id in
+        <foreach collection="ids" open="(" item="id" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    &lt;!&ndash;分页&ndash;&gt;
+    <select id="loginSelectLimit"  resultType="Users">
+        select id,username,phone,email,`time` from users
+
+            <trim prefix="where" prefixOverrides="and|or">
+                <if test="username!=null and username!=''">
+                    and username like concat(concat('%',#{username}),'%')
+                </if>
+                <if test="phone!=null and phone!=''">
+                    and phone like concat(concat('%',#{phone}),'%')
+                </if>
+                <if test="email!=null and email!=''">
+                    and email like concat(concat('%',#{email}),'%')
+                </if>
+            </trim>
+         LIMIT #{pageNo},#{pageSize}
+    </select>
+
+    &lt;!&ndash;手机号不能重复&ndash;&gt;
+    <select id="noPhone" resultType="Users">
+        select  * from Users where phone = #{phone}
+    </select>
+
+    &lt;!&ndash;用户名不能重复&ndash;&gt;
+    <select id="noUserName" resultType="Users">
+        select  * from Users where username = #{username}
+    </select>
+
+    &lt;!&ndash;查询用户名密码是否相同&ndash;&gt;
+    <select id="findUser"  resultMap="UserMap">
+        select * from users
+    </select>-->
+</mapper>

@@ -1,0 +1,383 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#top-div {
+    width: 100%;
+    height: 100px;
+    border-bottom: 2px solid #FF6700;
+    background: #FFFFFF;
+}
+
+#top-div #top-div-1 {
+    width: 1226px;
+    height: 100px;
+    position: relative;
+    margin: 0 auto;
+}
+
+#top-div #top-div-1 #top-div-img {
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    margin-top: 26px;
+    margin-right: 40px;
+    float: left;
+    background: #ff6700;
+}
+
+#top-div #top-div-1 h2 {
+    font-size: 28px;
+    line-height: 100px;
+    font-weight: normal;
+
+}
+
+#top-div #top-div-1 .top-div-logAndreg {
+    position: absolute;
+    width: 170px;
+    right: 0%;
+    height: 25px;
+    color: #CCCCCC;
+    top: 39%;
+    text-align: right;
+}
+
+#top-div #top-div-1 .top-div-logAndreg a {
+    text-decoration: none;
+    font-size: 12px;
+    color: #757575;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    width: 65px;
+}
+
+/*内容*/
+#mi-body {
+    width: 1349px;
+    overflow: hidden;
+    padding-top: 40px;
+    margin: 0 auto;
+    background: #F5F5F5;
+}
+
+#mi-body #mi-body-box {
+    width: 1226px;
+    overflow: hidden;
+    margin: 0 auto;
+    padding-top: 50px;
+    background: #ffffff;
+}
+
+#mi-body #mi-body-box #mi-body-dizhi {
+    width: 1130px;
+    height: 20px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+#mi-body #mi-body-box #mi-body-dizhi h3 {
+    float: left;
+    color: #333;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: normal;
+}
+
+#mi-body #mi-body-box #mi-body-dizhi2 {
+    margin: 0 auto;
+    width: 1160px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+#mi-body #mi-body-box #mi-body-dizhi2 .mi-body-dizhi2-1 {
+    width: 220px;
+    height: 163px;
+    margin-right: 20px;
+    margin-bottom: 25px;
+    float: left;
+    border: 1px solid #e0e0e0;
+    padding: 15px 24px 0;
+}
+
+#mi-body #mi-body-box #mi-body-dizhi2 .mi-body-dizhi2-1 .p1 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #b0b0b0;
+    text-align: center;
+    line-height: 36px;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 1px solid #B0B0B0;
+    margin-top: 50px;
+}
+
+#mi-body #mi-body-box #mi-body-dizhi2 .mi-body-dizhi2-1 .p2 {
+    font-size: 14px;
+    color: #b0b0b0;
+    line-height: 50px;
+    text-align: center;
+}
+
+#mi-body #mi-body-box #mi-body-dizhi2 .mi-body-dizhi2-1:hover .p1 {
+    color: #FFFFFF;
+    border: 1px solid #757575;
+    background: #757575;
+}
+
+#mi-body #mi-body-box #mi-body-dizhi2 .mi-body-dizhi2-1:hover .p2 {
+    color: #757575;
+}
+
+.mi-body-dizhi2-username {
+    font-size: 18px;
+    color: #333;
+    font-style: normal;
+}
+
+.mi-body-dizhi2-phone {
+    margin: 0;
+    line-height: 22px;
+    color: #757575;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.mi-body-dizhi2-dizhi {
+    max-height: 88px;
+    overflow: hidden;
+    margin: 0;
+    line-height: 22px;
+    color: #757575;
+    font-size: 14px;
+}
+
+.mi-body-dizhi2-dizhi .dizhi {
+    color: #757575;
+    font-size: 14px;
+}
+
+#mi-body #mi-body-box #mi-body-dizhi2 .mi-body-dizhi2-1:hover {
+    border: 1px solid #757575;
+    transition: all .4s linear;
+    cursor: pointer;
+}
+
+#mi-body #mi-body-box #mi-body-dizhi2 .mi-body-dizhi2-1:hover {
+    border: 1px solid #757575;
+    transition: all .4s linear;
+    cursor: pointer;
+}
+
+#mi-body .mi-body-box2 {
+    width: 1130px;
+    height: 42px;
+    border-bottom: 1px solid #b0b0b0;
+    margin: 0 auto;
+    position: relative;
+}
+
+#mi-body .mi-body-box2-1 {
+    width: 1130px;
+    height: 42px;
+    border-bottom: 1px solid #b0b0b0;
+    margin: 0 auto;
+    position: relative;
+    padding: 25px 0;
+}
+
+#mi-body .mi-body-box2-2 {
+    width: 1130px;
+    height: 240px;
+    border-bottom: 1px solid #b0b0b0;
+    margin: 0 auto;
+    position: relative;
+    padding: 25px 0;
+}
+
+#mi-body .mi-body-box2-3 {
+    padding: 20px 0;
+    position: relative;
+}
+
+#mi-body .mi-body-box2-3 #jiesuan-btn {
+    display: inline-block;
+    width: 160px;
+    height: 40px;
+    background: #FF6700;
+    text-align: center;
+    line-height: 40px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #FFFFFF;
+    position: absolute;
+    right: 0;
+}
+
+#mi-body .mi-body-box2-3 #jiesuan-btn:hover {
+    background: #FF4500;
+    transition: all .6s linear;
+}
+
+#mi-body .mi-body-box2-1 a {
+    border-color: #fff;
+    color: #ff6700;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-block;
+    float: left;
+    line-height: 42px;
+}
+
+#mi-body .mi-body-box2 .title {
+    line-height: 40px;
+    text-align: left;
+    width: 130px;
+    height: 42px;
+    font-weight: normal;
+
+}
+
+#mi-body .mi-body-box2-1 .title {
+    line-height: 40px;
+    text-align: left;
+    width: 130px;
+    height: 42px;
+    font-weight: normal;
+    float: left;
+}
+
+#mi-body .mi-body-box2 .go-car {
+    width: 90px;
+    height: 41px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    line-height: 42px;
+}
+
+#mi-body .mi-body-box2 .go-car a {
+    text-decoration: none;
+    color: #b0b0b0;
+    transition: all .4s;
+    font-size: 14px;
+}
+
+#mi-body-box2-2-jiesuan {
+    width: 240px;
+    height: 200px;
+    position: absolute;
+    right: 0;
+    padding: 20px 0;
+}
+
+.mi-body-box2-shangpin {
+    width: 1130px;
+    height: 30px;
+    padding: 10px 0;
+    margin: 0 auto;
+    border-bottom: 1px solid #b0b0b0;
+}
+
+.mi-body-box2-shangpin a {
+    font-size: 14px;
+    color: #757575;
+    text-decoration: none;
+    height: 30px;
+    display: inline-block;
+    line-height: 30px;
+    width: 650px;
+    float: left;
+}
+
+.mi-body-box2-shangpin .mi-body-box2-shangpin-jiage {
+    width: 150px;
+    height: 30px;
+    float: left;
+    text-align: center;
+    color: #5F5750;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+.mi-body-box2-shangpin-jiage2 {
+    width: 190px;
+    height: 30px;
+    float: left;
+    text-align: center;
+    color: #ff6700;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+.mi-body-box2-shangpin img {
+    width: 30px;
+    height: 30px;
+    float: left;
+}
+
+#mi-body-box2-2-jiesuan ul {
+    list-style-type: none;
+}
+
+#mi-body-box2-2-jiesuan ul .clear {
+    width: 164px;
+    height: 30px;
+    font-size: 14px;
+}
+
+#mi-body-box2-2-jiesuan ul .clear label {
+    text-align: right;
+    width: 90px;
+    height: 30px;
+    font-size: 14px;
+    color: #757575;
+    display: inline-block;
+    line-height: 30px;
+}
+
+#mi-body-box2-2-jiesuan ul .clear span {
+    text-align: right;
+    width: 70px;
+    height: 30px;
+    display: inline-block;
+    line-height: 30px;
+    color: #FF6700;
+}
+
+#mi-body-box2-2-jiesuan ul .cleartop {
+    width: 164px;
+    height: 34px;
+    color: #FF6700;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+#mi-body-box2-2-jiesuan ul .cleartop #CarSumPrice {
+    font-size: 25px;
+}
+
+#mi-body-box2-2-jiesuan ul .cleartop label {
+    text-align: right;
+    width: 90px;
+    height: 34px;
+    font-size: 14px;
+    color: #757575;
+    display: inline-block;
+    line-height: 34px;
+}
+
+#mi-body-box2-2-jiesuan ul .cleartop span {
+    text-align: right;
+    width: 57px;
+    height: 34px;
+    display: inline-block;
+    line-height: 34px;
+    color: #FF6700;
+    font-size: 30px;
+}

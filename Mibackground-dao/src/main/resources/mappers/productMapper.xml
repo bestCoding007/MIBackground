@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyangwen.mibackground.dao.ProductDao">
+    <!--id应该是接口中的方法，结果类型如没有配置别名则应该使用全名称 -->
+    <!--配置商品信息表和数据库之间的映射关系-->
+    <resultMap id="ProductMap" type="Product">
+        <id column="productId" property="productId"></id>
+        <result column="catId" property="catId"></result>
+        <result column="productName" property="productName"></result>
+        <result column="oldPrice" property="oldPrice"></result>
+        <result column="productPhoto" property="productPhoto"></result>
+        <result column="productDesc" property="productDesc"></result>
+        <result column="productCount" property="productCount"></result>
+        <result column="shopId" property="shopId"></result>
+        <result column="productColor" property="productColor"></result>
+        <result column="isNewProduct" property="isNewProduct"></result>
+        <result column="isHotProduct" property="isHotProduct"></result>
+    </resultMap>
+
+    <!--修改商品信息-->
+    <update id="editProduct" parameterType="Product">
+        update product
+        set catId=#{catId},
+          productName=#{productName},
+          oldPrice=#{oldPrice},
+          productPhoto=#{productPhoto},
+          productDesc=#{productDesc},
+          productCount=#{productCount},
+          shopId=#{shopId},
+          productColor=#{productColor},
+          isNewProduct=#{isNewProduct},
+          isHotProduct=#{isHotProduct}
+        where productId=#{productId};
+    </update>
+
+    <!--手机端后台跨域-->
+    <!--查询商品-->
+    <select id="ProductSelect"  resultType="Product">
+        select * from Product
+    </select>
+
+    <!--商品分页-->
+    <select id="productLimit"  resultType="Product">
+        select * from Product
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="productName!=null and productName!=''">
+                or productName like concat(concat('%',#{productName}),'%')
+            </if>
+            <if test="productName!=null and productName!=''">
+                or oldPrice like concat(concat('%',#{productName}),'%')
+            </if>
+            <if test="productName!=null and productName!=''">
+                or productDesc like concat(concat('%',#{productName}),'%')
+            </if>
+        </trim>
+        order by productId desc
+        LIMIT #{pageNo},#{pageSize}
+    </select>
+
+    <!--商品录入-->
+    <insert id="addGoods" parameterType="Product">
+        insert into Product(catId,productName,productCount,shopId,oldPrice,productColor,productDesc,isNewProduct,isHotProduct,productPhoto)
+        values(#{catId},#{productName},#{productCount},#{shopId},#{oldPrice},#{productColor},#{productDesc},#{isNewProduct},#{isHotProduct},#{productPhoto})
+    </insert>
+
+    <!--添加图片-->
+    <insert id="addPhoto" parameterType="String">
+        insert into Product(productPhoto) values(#{productPhoto})
+    </insert>
+
+    <!--未使用 根据ID删除一条数据-->
+    <delete id="delById" parameterType="int">
+        delete from Product where productId=#{productId}
+    </delete>
+
+    <!--根据ID删除循环多条数据-->
+    <delete id="deleteByIds" parameterType="String">
+        delete from Product
+        where productId in
+        <foreach collection="ids" open="(" item="productId" separator="," close=")">
+            #{productId}
+        </foreach>
+    </delete>
+
+    <!--查询商品总数-->
+    <select id="selectProductSize" resultType="int">
+        select count(*) from product
+        <if test="productName!=null and productName!=''">
+            and productName like concat(concat('%',#{productName}),'%')
+        </if>
+        <if test="oldPrice!=null and oldPrice!=''">
+            and oldPrice like concat(concat('%',#{oldPrice}),'%')
+        </if>
+        <if test="productDesc!=null and productDesc!=''">
+            and productDesc like concat(concat('%',#{productDesc}),'%')
+        </if>
+    </select>
+
+    <!--前台查询手机类别数据-->
+    <select id="receptionProductByPage"  resultType="Product">
+        select * from Product
+        order by productId desc
+        LIMIT #{pageNo},#{pageSize}
+    </select>
+
+    <!--根据商品编号获得其他参数-->
+    <select id="getProductId" resultType="Product">
+        select * from product where productId = #{productId}
+    </select>
+  <!--
+    &lt;!&ndash;手机号不能重复&ndash;&gt;
+    <select id="noPhone" resultType="Users">
+        select  * from Users where phone = #{phone}
+    </select>
+
+    &lt;!&ndash;用户名不能重复&ndash;&gt;
+    <select id="noUserName" resultType="Users">
+        select  * from Users where username = #{username}
+    </select> -->
+</mapper>

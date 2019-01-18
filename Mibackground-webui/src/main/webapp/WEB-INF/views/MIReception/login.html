@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>小米账号 - 登录</title>
+		<link rel="shortcut icon" href="../../../img/reception/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="../../../css/receptionLogin/login.css">
+	</head>
+	<body>
+		<div id="controller">
+			<div id="top">
+				<div id="top_img">
+					<img src="../../../img/reception/login_logo.png" style="margin-left: 110px;"/>
+				</div>	
+			</div>
+			<div id="main">				
+				<div id="login">
+					<div id="l1">
+						<div id="l_left"><a href="" class="zhang">帐号登录</a></div><div id="l_right"><a href="" class="saoma">扫码登录</a></div>
+					</div>
+					<div id="ri_main">
+						<input type="text" name="uName" id="txt1" class="txt1" placeholder="     账号/手机号"/>
+						<input type="password" name="passWord" id="txt2" class="txt1" placeholder="     密码"/>
+						<input type="button" id="sub1"  value="登录" />
+						<div id="set"><a href="/reception/registerVerify">手机短信登录/注册</a></div><div id="set2"><a href="/reception/register">立即注册 </a>|<a href=""> 忘记密码?</a></div>
+					</div>
+					<div id="relation">
+						<a href=""><img src="'../../../img/reception/QQ.png" class="qwzw"/></a>
+						<a href=""><img src="'../../../img/reception/微博.png" class="qwzw"/></a>
+						<a href=""><img src="'../../../img/reception/支付宝.png" class="qwzw"/></a>
+						<a href=""><img src="'../../../img/reception/weixin.png" class="qwzw"/></a>
+					</div>
+					<span id="s1"></span><span id="s3">其他方式登录</span><span id="s2"></span>			
+				</div>
+			</div>
+			<div id="end">
+				<div id="copy">
+					<a href="#" style="color: black;">简体</a><span class="y">|</span>	
+					<a href="#">繁体</a><span class="y">|</span>
+					<a href="#">English</a><span class="y">|</span>
+					<a href="">常见问题</a><span class="y">|</span>
+					<a href="">隐私政策</a>
+				</div>
+				<div id="copy2">					
+					小米公司版权所有-京ICP备10046444-<img src="../../../img/reception/ghs.png"/><a href="#" class="jin">京公网安备11010802020134号</a>-京ICP证110507号
+				</div>
+			</div>
+		</div>
+
+        <script src="../js/jquery-3.3.1.js"></script>
+        <script type="text/javascript">
+            /*前台登录*/
+            $("#sub1").click(function () {
+                var uName = $("#txt1").val();
+                var passWord = $("#txt2").val();
+                $.ajax({
+                    url:"/users/receptionLogin",
+                    type:"GET",
+                    data:{uName:uName,userPhone:uName,passWord:passWord},
+                    success:function (data) {
+                        if (data.msg=="success"){
+                            $("#txt1").val("");
+                            $("#txt2").val("");
+                            //延迟跳转
+                            setTimeout(" location.href=\"/reception/MIIndex\"",1200);
+                        }
+                        else{
+                            /*清空文本框中的值*/
+                            $("#txt1").val("");
+                            $("#txt2").val("");
+                            alert("登录失败！请重新输入。");
+                        }
+                    }
+                })
+            })
+
+        </script>
+	</body>
+</html>

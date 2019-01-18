@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenyangwen.mibackground.dao.ProductDao">
+    <!--id应该是接口中的方法，结果类型如没有配置别名则应该使用全名称 -->
+    <!--配置商品信息表和数据库之间的映射关系-->
+    <resultMap id="ProductMap" type="Product">
+        <id column="productId" property="productId"></id>
+        <result column="catId" property="catId"></result>
+        <result column="productName" property="productName"></result>
+        <result column="uNit" property="uNit"></result>
+        <result column="oldPrice" property="oldPrice"></result>
+        <result column="productPhoto" property="productPhoto"></result>
+        <result column="productDesc" property="productDesc"></result>
+        <result column="productCount" property="productCount"></result>
+        <result column="shopId" property="shopId"></result>
+        <result column="productColor" property="productColor"></result>
+        <result column="isNewProduct" property="isNewProduct"></result>
+        <result column="isHotProduct" property="isHotProduct"></result>
+    </resultMap>
+
+    <!--手机端后台跨域-->
+    <!--查询商品-->
+    <select id="ProductSelect"  resultType="Product">
+        select * from Product
+    </select>
+
+    <!--商品分页-->
+    <select id="productLimit"  resultType="Product">
+        select * from Product
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="productName!=null and productName!=''">
+                and productName like concat(concat('%',#{productName}),'%')
+            </if>
+            <if test="oldPrice!=null and oldPrice!=''">
+                and oldPrice like concat(concat('%',#{oldPrice}),'%')
+            </if>
+            <if test="productDesc!=null and productDesc!=''">
+                and productDesc like concat(concat('%',#{productDesc}),'%')
+            </if>
+        </trim>
+        LIMIT #{pageNo},#{pageSize}
+    </select>
+  <!--  &lt;!&ndash;查询管理员&ndash;&gt;
+    <select id="getAllAdministrators"  resultType="Administrator">
+        select administratorUsername,administratorPassword from Administrator
+    </select>
+
+    &lt;!&ndash;添加管理员&ndash;&gt;
+    <insert id="addAdministrator" parameterType="Administrator">
+        insert into Administrator(administratorName,administratorUsername,administratorPassword,administratorNewPassword,administratorPhoto)
+        values(#{administratorName},#{administratorUsername},#{administratorPassword},#{administratorNewPassword},#{administratorPhoto})
+    </insert>
+
+    &lt;!&ndash;修改密码&ndash;&gt;
+    <update id="editAdministrator" parameterType="Administrator">
+        update Administrator set administratorName=#{administratorName},administratorPassword=#{administratorPassword},administratorNewPassword=#{administratorNewPassword} where administratorId=#{administratorId}
+    </update>-->
+
+    <!--&lt;!&ndash;单删除&ndash;&gt;
+    <delete id="delById" parameterType="int">
+        delete from users where id=#{id}
+    </delete>
+
+    &lt;!&ndash;多删除&ndash;&gt;
+    <delete id="deleteByIds">
+        delete from users
+        where id in
+        <foreach collection="ids" open="(" item="id" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    &lt;!&ndash;分页&ndash;&gt;
+    <select id="loginSelectLimit"  resultType="Users">
+        select id,username,phone,email,`time` from users
+
+            <trim prefix="where" prefixOverrides="and|or">
+                <if test="username!=null and username!=''">
+                    and username like concat(concat('%',#{username}),'%')
+                </if>
+                <if test="phone!=null and phone!=''">
+                    and phone like concat(concat('%',#{phone}),'%')
+                </if>
+                <if test="email!=null and email!=''">
+                    and email like concat(concat('%',#{email}),'%')
+                </if>
+            </trim>
+         LIMIT #{pageNo},#{pageSize}
+    </select>
+
+    &lt;!&ndash;手机号不能重复&ndash;&gt;
+    <select id="noPhone" resultType="Users">
+        select  * from Users where phone = #{phone}
+    </select>
+
+    &lt;!&ndash;用户名不能重复&ndash;&gt;
+    <select id="noUserName" resultType="Users">
+        select  * from Users where username = #{username}
+    </select>
+
+    &lt;!&ndash;查询用户名密码是否相同&ndash;&gt;
+    <select id="findUser"  resultMap="UserMap">
+        select * from users
+    </select>-->
+</mapper>

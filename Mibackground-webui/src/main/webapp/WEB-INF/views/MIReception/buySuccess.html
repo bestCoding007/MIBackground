@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>选择在线支付订单</title>
+    <link rel="shortcut icon" href="../../../img/reception/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../../css/MIReception/buySuccess.css">
+    <style>
+        .buyColor :hover {
+            border: 1px solid #ff6700;
+            cursor: pointer;
+        }
+        #orderDetails{
+            color: #616161;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        #orderDetails:hover{
+            color: #ff6700;
+        }
+        .user-menu{
+            position: absolute;
+            display: none;
+            margin-left: 1030px;
+            z-index: 3;
+            width: 120px;
+            padding: 7px 0;
+            list-style-type: none;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 70px;
+        }
+        .user-menu a{
+            text-decoration: none;
+            color: black;
+        }
+        .user-menu li{
+            padding: 6px 0;
+        }
+    </style>
+</head>
+<body>
+<div id="top-div">
+    <div id="top-div-1">
+        <a id="top-div-img" href="/reception/MIIndex"><img src="../../../img/reception/mi-logo.png"></a>
+        <a class="userSession" href="/reception/login"
+           style="position: absolute;margin-left: 940px;margin-top: 40px;border-right: 2px solid #d4d4d4;width: 104px;font-size: 12px;color: #757575;text-decoration: none;text-align: center">登录</a>
+        <ul class="user-menu">
+            <li>
+                <a href="javascript:;" rel="nofollow" target="_blank">个人中心</a>
+            </li>
+            <li>
+                <a href="javascript:;" rel="nofollow" target="_blank">评价晒单</a>
+            </li>
+            <li>
+                <a href="javascript:;" rel="nofollow" target="_blank">我的喜欢</a>
+            </li>
+            <li>
+                <a href="javascript:;" rel="nofollow" target="_blank">小米账户</a>
+            </li>
+            <li id="backIndex">
+                <a href="javascript:;" rel="nofollow">退出登录 </a>
+            </li>
+        </ul>
+        <a href="/reception/orderManagement"
+           style="position: absolute;margin-left: 1050px;margin-top: 42px;font-size: 12px;color: #757575;text-decoration: none">我的订单</a>
+        <h2>支付订单</h2>
+    </div>
+</div>
+<div id="mi-body">
+    <div id="mi-body-box">
+        <div style="margin-left: 50px;margin-top: -16px">
+            <img src="../../../img/reception/buySuccess.png" height="98" width="108"/>
+        </div>
+        <div style="position: absolute;margin-top: -74px;font-size: 26px;margin-left: 200px">订单提交成功！去付款咯～</div>
+        <div style="position: absolute;margin-top: -34px;margin-left: 200px;color: #616161;font-size: 14px;">请在<span
+                style="color: #ff6700">0小时30分</span>内完成支付, 超时后将取消订单
+        </div>
+        <div id="infoS" style="position: absolute;margin-top: -6px;margin-left: 200px;color: #616161;font-size: 14px;">收货信息：<span
+                id="buyInfo"></span></div>
+        <div style="position: absolute;margin-top: -74px;margin-left: 1040px;color: #616161">应付总额：<span id="buyCount"
+                                                                                                        style="font-size: 22px;color: #ff6700">11元</span>
+        </div>
+        <a href="javascript:;" id="orderDetails" style="margin-left: 1100px">订单详情 v</a>
+        <div id="noneBox" style="width: 100%;height: 100px;margin-top: 60px;display: none">
+            <div style="margin-left: 200px">
+                <table>
+                    <tr><td>订单号：</td><td id="td1" style="color: #ff6700"></td></tr>
+                    <tr><td>收货信息：</td><td id="td2"></td><td id="td4"></td><td id="td5"></td></tr>
+                    <tr><td>商品名称：</td><td id="td3"></td></tr>
+                    <tr><td>发票信息：</td><td>电子发票 个人</td></tr>
+                </table>
+            </div>
+        </div>
+        <div style="width: 100%;margin-top: 100px" class="buyInfo">
+
+        </div>
+        <div style="width: 100%;height: 30px;margin-top:60px;background:#F5F5F5"></div>
+    </div>
+    <div id="meansOfPurchase">
+        <div id="meansOfPurchase-box">
+            <div style="font-size: 18px;margin-left: 60px;width: 1100px;height: 60px;border-bottom: 1px solid #c7c7c7">
+                选择以下支付方式付款
+            </div>
+            <div style="margin-left: 58px;margin-top: 20px">
+                <h3>支付平台</h3>
+                <div id="WeChat" class="buyColor"
+                     style="width: 174px;height: 60px;margin-right: 20px;margin-top: 20px;border: 1px solid #e0e0e0;float: left">
+                    <img src="../../../img/reception/weixinpay.png"/>
+                </div>
+                <div id="AliPay" class="buyColor"
+                     style="width: 174px;height: 60px;margin-top: 20px;border: 1px solid #e0e0e0;float: left">
+                    <img src="../../../img/reception/payOnline_zfb.png" height="59" width="173"
+                    />
+                </div>
+                <div style="background: #fff;width: 100%;height: 30px;margin-top: 90px"></div>
+            </div>
+        </div>
+        <div style="width: 100%;height: 30px;margin-top:10px;background:#F5F5F5"></div>
+    </div>
+</div>
+</div>
+<script src="../../../js/MIReception/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/artDialog/dist/dialog-plus.js"></script>
+<script>
+    function get(par) {
+        //获取当前URL
+        var local_url = document.location.href;
+        //截取get字符串
+        var getstr = local_url.substr(local_url.indexOf('?') + 1)
+        //解析成get数组
+        var get = getstr.split('&')
+        //查找要找到参数（par）
+        for (var i in get) {
+            if (get[i].indexOf(par + '=') >= 0) {
+                return get[i].replace(par + '=', '');
+            }
+        }
+        //如果找不到返回false
+        return false;
+    }
+
+    /*取到当前用户登录信息*/
+    function getUser() {
+        $.ajax({
+            url: '/users/getUserSession',
+            type: 'GET',
+            dataType: 'json',
+        }).done(function (data) {
+            if (data.code == 1) {
+                if (data.msg != null) {
+                    $(".userSession").html(data.msg + "<span style='font-size: 14px;'> &or;</span>");
+                    //登录成功后a标签的href改变
+                    $(".userSession").prop("href", "javascript:;");
+
+                    //退出登录，返回主页
+                    $("#backIndex").click(function () {
+                        $.ajax({
+                            url: "/users/backIndex",
+                            type: "GET",
+                            success: function () {
+                                location.href = "/reception/MIIndex";
+                                return true;
+                            }
+                        })
+                    });
+                } else {
+                    location.href="/reception/MIIndex";
+                    $(".userSession").html("登录 ");
+                }
+            }
+            var info = data.msg;
+
+            (function () {
+                $.ajax({
+                    url: "/users/getUserInfo",
+                    type: "GET",
+                    data: {uName: info},
+                }).done(function (data) {
+                    $.each(data.data, function (i, obj) {
+
+                        var uPhone = obj.userPhone;
+                        if (uPhone.length == 11) {
+                            //替换字符串
+                            var result = uPhone.substr(0, parseInt(uPhone.split('').length / 3)) + '****' + uPhone.substr(parseInt(uPhone.split('').length / 2 + 2), uPhone.split('').length)
+                        }
+                        var div = "<tr id='trBox'>";
+                        div += "<td>" + obj.nickname + "&nbsp;&nbsp;" + "</td>"
+                        div += "<td class='userPhone'>" + result + "&nbsp;&nbsp;" + "</td>"
+                        div += "<td class='address'>" + obj.userAddress + "</td>"
+                        div += "</tr>"
+
+                        $("#td2").text(obj.nickname);
+                        $("#td4").text(obj.userPhone);
+                        $("#td5").text(obj.userAddress);
+                        $("#buyInfo").append(div);
+
+                        //点击显示隐藏
+                        $("#orderDetails").click(function () {
+                            $("#noneBox").toggle();
+                            $("#infoS").toggle();
+                        })
+                    });
+                });
+            }())
+        })
+    };
+    getUser();
+
+    /*打开并传值到productCart页*/
+    $("#goToCart").click(function () {
+        //location.href = "/reception/productCart?productId=" + get('productId');
+        location.href = "/reception/productCart";
+    });
+
+    var sum = 0;
+    (function () {
+        var pName;
+        var pPrice;
+        var productCount;
+        $.ajax({
+            url: "/lineItem/getLineItem",
+            type: "GET",
+            dataType: "json",
+        }).done(function (data) {
+            $.each(data.data, function (i, obj) {
+                sum += (obj.newPrice * obj.productNumber);
+                $("#td1").text(obj.lineId);
+                $("#td3").text(obj.productName);
+                $("#buyCount").text(sum + "元");
+            });
+
+            pName = data.data.productName;
+            pPrice = data.data.newPrice;
+            productCount = data.data.productCount
+        });
+    }());
+
+    //打开支付宝支付弹出层
+    $("#AliPay").click(function () {
+        var box = dialog({
+            title: '支付宝支付',
+            lock: true,
+            content: '<div style="margin: auto;width: 400px;height: 400px" id="zfb">' +
+                '<div style="margin: auto;"><img style="margin-left: 37px" align="center" src="../../../img/reception/pay/Alipay.bmp" height="327" width="323"/></div>\n' +
+                '<div style="text-align: center;margin-top: 20px"><img style="display: block;position: absolute;margin-left: 100px;margin-top: -2px" src="../../../img/reception/支付宝.png" height="32" width="32"/><h2>手机扫码支付</h2></div>\n' +
+                '</div>',
+            width: '400px',
+            height: '400px',
+            backdropOpacity: 0.5,
+            fixed: true,
+            cancelValue: ' 取消 ',
+            cancel: function () {
+            }
+        });
+        /*打开弹出层和遮罩层*/
+        box.showModal();
+    })
+
+    //打开微信支付弹出层
+    $("#WeChat").click(function () {
+        var box = dialog({
+            title: '微信支付',
+            lock: true,
+            content: '<div style="margin: auto;width: 400px;height: 400px" id="zfb">' +
+                '<div style="margin: auto;"><img style="margin-left: 37px" align="center" src="../../../img/reception/pay/myWeChat.bmp" height="327" width="323"/></div>\n' +
+                '<div style="text-align: center;margin-top: 20px"><img style="display: block;position: absolute;margin-left: 100px;margin-top: -2px" src="../../../img/reception/weixin.png" height="32" width="32"/><h2>手机扫码支付</h2></div>\n' +
+                '</div>',
+            width: '400px',
+            height: '400px',
+            backdropOpacity: 0.5,
+            fixed: true,
+            cancelValue: ' 取消 ',
+            cancel: function () {
+            }
+        });
+        /*打开弹出层和遮罩层*/
+        box.showModal();
+    })
+
+    //登录的悬停
+    ;(function () {
+        $(".user-menu").on("mouseover mouseout", function (event) {
+            if (event.type == "mouseover") {
+                //鼠标悬停
+                $(".user-menu").css('display', 'block');
+            } else if (event.type == "mouseout") {
+                //鼠标离开
+                $(".user-menu").css('display', 'none');
+            }
+        })
+    }())
+
+    //登录的悬停
+    ;(function () {
+        $(".userSession").on("mouseover", function (event) {
+            if (event.type == "mouseover") {
+                //鼠标悬停
+                $(".user-menu").css('display', 'block');
+            }
+        })
+    }())
+
+</script>
+</body>
+</html>

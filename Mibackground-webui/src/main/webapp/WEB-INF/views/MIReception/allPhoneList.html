@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小米手机 - 小米商城</title>
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+    <style>
+        .goodcom1div4 {
+            width: 606px;
+            height: 562px;
+            z-index: 3;
+            text-align: left;
+            position: relative;
+            background: #fff;
+            transition: all .2s linear;
+            float: left;
+            margin-left: 14px;
+            min-height: 1px;
+            margin-top: 14px;
+        }
+
+        .goodcom1div4:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translate3d(0, -5px, 0);
+        }
+
+        .goodcom1div5 {
+            width: 596px;
+            height: 358px;
+            text-align: left;
+        }
+
+        .goodcom1a1 {
+            color: #757575;
+            text-decoration: none;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .goodcom1img1 {
+            background-color: #C6BCCC;
+            display: block;
+            width: 546px;
+            height: 428px;
+            border: 0;
+            color: #757575;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .goodcom1h31 {
+            line-height: 26px;
+            margin: 78px 0 0 48px;
+            font-weight: normal;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font-size: 1.17em;
+            text-align: left;
+            width: 558px;
+            height: 28px;
+        }
+
+        .goodcom1a2 {
+            font-size: 24px;
+            color: rgba(51, 51, 51, 0.9);
+            text-decoration: none;
+            line-height: 26px;
+            cursor: pointer;
+            font-weight: normal;
+            white-space: nowrap;
+            text-align: left;
+        }
+
+        .goodcom1p1 {
+            width: 558px;
+            height: 18px;
+            line-height: 18px;
+            margin: 3px 0 0 48px;
+            color: rgba(51, 51, 51, 0.7);
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .goodcom1p2 {
+            position: absolute;
+            right: 48px;
+            bottom: 30px;
+            margin: 0;
+            line-height: 30px;
+            color: #ff6700;
+            font-size: 12px;
+            font-weight: bold;
+            width: 135.656px;
+            height: 35px;
+        }
+
+        .goodcom1strong1 {
+            font-size: 30px;
+            font-family: "pricefont", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+            font-weight: normal;
+            color: #ff6700;
+            line-height: 30px;
+            text-align: left;
+        }
+
+        .goodcom1del1 {
+            color: rgba(51, 51, 51, 0.6);
+            text-decoration: line-through;
+            line-height: 30px;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .mishopping1 {
+            width: 300px;
+            height: 70px;
+            padding-top: 10px;
+            margin: auto;
+            border-bottom: 1px solid #b0b0b0;
+        }
+
+        .layui-carousel {
+            margin: auto;
+            width: 1520px;
+            height: 620px;
+        }
+    </style>
+    <link rel="stylesheet" href="../../../css/MIReception/allPhoneList.css">
+</head>
+<body>
+<div id="xiangxidiv1" style=" width: 1519px;">
+    <div id="xiangxidiv2">
+        <div id="xiangxidiv3">
+            <a class="xiangxia1" href="mi.html">小米商城</a>
+            <span class="xiangxispan1">|</span>
+            <a class="xiangxia1">MIUI</a>
+            <span class="xiangxispan1">|</span>
+            <a class="xiangxia1">loT</a>
+            <span class="xiangxispan1">|</span>
+            <a class="xiangxia1">云服务</a>
+            <span class="xiangxispan1">|</span>
+            <a class="xiangxia1">金融</a>
+            <span class="xiangxispan1">|</span>
+            <a class="xiangxia1">有品</a>
+            <span class="xiangxispan1">|</span>
+            <a class="xiangxia1">小爱开放平台</a>
+            <span class="xiangxispan1">|</span>
+            <a class="xiangxia1">政企服务</a>
+            <span class="xiangxispan1">|</span>
+            <a class="xiangxia1">Select Region</a>
+        </div>
+        <div id="xiangxidiv4">
+            <div class="xiangxia2" id="goToCart" onmousemove="yidon();" onmouseleave="yizou();">
+                <div id="div7">
+                    <img src="../../../img/reception/gwc2.png" id="img1"/>
+                </div>
+                <span class="span2">购物车</span>
+            </div>
+            <div id="xiangxidiv5" style="display: none;height: 350px;">
+                <ul style="width: 350px;height: 100%;list-style: none;margin: 0;padding: 0;">
+                    <li v-for="(obj,index) in mishopping" class="mishopping1">
+                        <!--图片-->
+                        <div style="width: 60px;height: 40px;float: left;padding-left: 10px;">
+                            <img src="../../../img/productImg/4.jpg"
+                                 style="width: 50px;height: 50px;cursor: pointer;border: 0;">
+                        </div>
+                        <!--商品名称-->
+                        <div style="width: 120px;height: 60px;float: left;color: #424242;overflow: hidden;font-size: 16px;margin-top: -20px">
+                            小米8 SE
+                        </div>
+                        <!--商品价格和数量-->
+                        <div style="width:90px;height: 40px;float: left;padding-left: 10px;color: #424242;margin-top: -20px;font-size: 16px;">
+                            1499元 X 1
+                        </div>
+                    </li>
+                    <div style="width: 100%;height: 50px;margin-top: -10px;">
+                        <div style="width: 150px;height: 50px;float: left;">
+                            <div style="width: 150px;height: 20px;color: #757575;text-align: center;"></div>
+                            <div style="width: 150px;height: 40px;display: block;">
+                                <h2 style="color: #ff6700;font-size: 19px;height: 40px;"></h2>
+                            </div>
+                        </div>
+                        <div style="float: left;height: 50px;width: 200px;padding-top: 25px;">
+                            <a style="font-size:20px;text-decoration: none;width: 150px;height: 50px;background: #ff6700;color: white;display: block;text-align: center;line-height: 50px;">
+                                去购物车结算
+                            </a>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+
+        <div id="div8"
+             style="line-height: 40px;position: relative;float: right;height: 40px;font-size: 12px;color: #b0b0b0;width: 265px;height: 40px;">
+            <div id="xiaomilogindiv1" style="display: block">
+                <a class="a2" href="/reception/login"
+                   style="color: #B0B0B0;font-size: 12px;margin-left: 94px;text-decoration: none" id="userSession">登录</a>
+                <span class="span3">|</span>
+                <a class="a3" href="/reception/register"
+                   style="color: #B0B0B0;font-size: 12px;text-decoration: none">注册</a>
+                <span class="span3">|</span>
+                <a class="a3" href="/reception/register" style="color: #B0B0B0;font-size: 12px;text-decoration: none">&nbsp;消息通知</a>
+            </div>
+
+            <div id="xiaomilogindiv2" style="display: none">
+					<span style="float: left;position: relative;width: 110px;padding: 0;white-space: nowrap;line-height: 40px;width: 110px;height: 40px;">
+						<a class="loginxiaomia1"
+                           style="position: relative;z-index: 5;display: block;width: 120px;height: 40px;text-align: center;color: #b0b0b0;line-height: 40px;text-decoration: none;"
+                           href="#"></a>
+						<ul class="loginxiaomiul1"
+                            style="display: none;position: absolute;left: 0;width: 120px;top: 40px;margin: 0;padding: 7px 0;list-style-type: none;background: #fff;box-shadow: 0 2px 10px rgba(0,0,0,0.15);z-index: 800;">
+							<li class="loginxiaomili1" style="display: list-item;">
+								<a href="grpersonalcenter.html"
+                                   style="display: block;padding: 3px 30px;line-height: 2;color: #424242;">个人中心</a>
+							</li>
+							<li class="loginxiaomili1" style="display: list-item;">
+								<a href="#"
+                                   style="display: block;padding: 3px 30px;line-height: 2;color: #424242;">评价晒单</a>
+							</li>
+							<li class="loginxiaomili1" style="display: list-item;">
+								<a href="#"
+                                   style="display: block;padding: 3px 30px;line-height: 2;color: #424242;">我的喜欢</a>
+							</li>
+							<li class="loginxiaomili1" style="display: list-item;">
+								<a href="#"
+                                   style="display: block;padding: 3px 30px;line-height: 2;color: #424242;">小米账户</a>
+							</li>
+							<li class="loginxiaomili1" style="display: list-item;">
+								<a href="#"
+                                   style="display: block;padding: 3px 30px;line-height: 2;color: #424242;">退出登录</a>
+							</li>
+						</ul>
+					</span>
+                <span style="float: left;margin: 0;color: #424242;font-family: sans-serif;">|</span>
+                <span style="float: left;padding: 0 10px;line-height: 40px;width: 48px;height: 40px;">
+						<a style="color: #b0b0b0;line-height: 40px;display: inline-block;text-decoration: none;">消息通知</a>
+					</span>
+                <span style="float: left;margin: 0;color: #424242;font-family: sans-serif;">|</span>
+                <a style="width: 70px;padding: 0 5px;text-align: center;float: left;color: #b0b0b0;line-height: 40px;display: inline-block;text-decoration: none;height: 40px;"
+                   href="#">我的订单</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="diva1">
+    <div id="diva2">
+        <div id="diva3">
+            <a class="maxa1" href="/reception/MIIndex"><img src="../../../img/reception/logo.png"/></a>
+        </div>
+        <div id="diva4">
+            <ul class="xiangxiul1">
+                <li class="xiangxili1">
+                    <a class="xiangxia5">
+                        <span class="xiangxispan5">全部商品分类</span>
+                    </a>
+                </li>
+                <li class="xiangxili2">
+                    <a class="xiangxia6">
+                        <span class="xiangxispan5">小米手机</span>
+                    </a>
+                </li>
+                <li class="xiangxili2">
+                    <a class="xiangxia6">
+                        <span class="xiangxispan5">红米</span>
+                    </a>
+                </li>
+                <li class="xiangxili2">
+                    <a class="xiangxia6">
+                        <span class="xiangxispan5">电视</span>
+                    </a>
+                </li>
+                <li class="xiangxili2">
+                    <a class="xiangxia6">
+                        <span class="xiangxispan5">笔记本</span>
+                    </a>
+                </li>
+                <li class="xiangxili2">
+                    <a class="xiangxia6">
+                        <span class="xiangxispan5">空调</span>
+                    </a>
+                </li>
+                <li class="xiangxili2">
+                    <a class="xiangxia6">
+                        <span class="xiangxispan5">新品</span>
+                    </a>
+                </li>
+                <li class="xiangxili2">
+                    <a class="xiangxia6">
+                        <span class="xiangxispan5">路由器</span>
+                    </a>
+                </li>
+                <li class="xiangxili2">
+                    <a class="xiangxia6">
+                        <span class="xiangxispan5">智能硬件</span>
+                    </a>
+                </li>
+                <li class="xiangxili2">
+                    <a class="xiangxia6">
+                        <span class="xiangxispan5">服务</span>
+                    </a>
+                </li>
+                <li class="xiangxili2">
+                    <a class="xiangxia6">
+                        <span class="xiangxispan5">社区</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="diva5">
+            <form id="xiangxiform1" method="get">
+                <input type="text" id="xiangxiinput1" name="gciname"/>
+                <a class="icon xiangxiinput2"><img class="changeF" src="../../../img/reception/s.png" width="52" height="49" style="border: 1px solid #E0E0E0;margin-top: -1.8px;border-left: none"></a>
+                <div id="diva6">
+                    <a class="xiangxia7">小米8</a>
+                    <a class="xiangxia8">小米MIX 2S</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="layui-carousel" id="test1">
+    <div id="test2" style="margin: auto;width: 100%;height: 620px;">
+        <div><img src="../../../img/reception/allPhone1.jpg" width="1519px" height="620px" style="margin: auto;"></div>
+        <div><img src="../../../img/reception/allPhone2.jpg" width="1519px" height="620px" style="margin: auto;"></div>
+    </div>
+</div>
+<div class="goodcom1div1">
+    <h2 class="goodcom1h21">明星手机</h2>
+</div>
+<div class="goodcom1div2">
+    <div class="goodcom1div3">
+    </div>
+</div>
+<script src="../../../js/jquery-3.3.1.js"></script>
+<script src="../../../js/MIReception/jquery.lazyload.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    //购物车
+    function yidon() {
+        var ele = document.getElementById("img1");
+        ele.src = "../../../img/reception/gwc2.png";
+        $("#xiangxidiv5").slideDown();
+    }
+
+    function yizou() {
+        var elee = document.getElementById("img1");
+        elee.src = "../../../img/reception/gwc2.png";
+        $("#xiangxidiv5").slideUp();
+    }
+
+    (function () {
+        $.ajax({
+            type: "get",
+            url: "/product/receptionProductSelect",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                if (data.code == 1) {
+                    $(".goodcom1div3 .goodcom1div4").remove();
+                    $.each(data.data, function (index, obj) {
+                        /* 判断简介文本长度大于14后裁剪*/
+                        if (obj.productDesc.length > 14) {
+                            obj.productDesc = obj.productDesc.substring(0, 14)
+                        }
+
+                        var div = "<div class='goodcom1div4'>";
+                        div += "<div class='goodcom1div5'><a class='goodcom1a1' href='/reception/productDescription?productId=" + obj.productId + "'><img data-original='../../files/" + obj.productPhoto + "' src='../../../img/indexProductType/load.png' class='goodcom1img1'></a></div>";
+                        div += "<h3 class='goodcom1h31'><a class='goodcom1a2'>" + obj.productName + "</a></h3>";
+                        div += "<p class='goodcom1p1'>" + obj.productDesc + "</p>";
+                        div += "<p class='goodcom1p2'><strong class='goodcom1strong1'>" + obj.oldPrice + "</strong>元起&nbsp;<del class='goodcom1del1'>" + obj.oldPrice + "</del></p>"
+                        div += "</div>";
+                        $(".goodcom1div3").append(div);
+                    });
+                    $(".goodcom1div4 .goodcom1img1").lazyload({
+                        "effect": "fadeIn"
+                    });
+                }
+            }
+        })
+    }())
+
+    //查看购物车
+    $("#goToCart").click(function () {
+        location.href="/reception/productCart";
+    });
+
+    //查询购物车商品总数
+    (function()  {
+        $.ajax({
+            url: "/lineItem/getLineItem",
+            type: "GET",
+            dataType: "json"
+        }).done(function (data) {
+            if(data.data.length>0){
+                //$("#goToCart").css("opacity","1");
+                $(".span2").append(data.data.length);
+                $(".span2").text("购物车("+data.data.length+")");
+                $("#goToCart").css("background","#ff5800");
+            }else {
+                $(".span2").text("购物车（0）");
+            }
+        });
+    }());
+
+    //切换搜索图片
+    ;(function () {
+        $(".changeF").on("mouseover mouseout", function (event) {
+            if (event.type == "mouseover") {
+                //鼠标悬停
+                $(".changeF").prop('src', '../../../img/reception/s_search.png');
+            } else if (event.type == "mouseout") {
+                //鼠标离开
+                $(".changeF").prop('src', '../../../img/reception/s.png');
+
+            }
+        })
+    }())
+
+    /*取到当前用户登录信息*/
+    function getUser() {
+        $.ajax({
+            url:'/users/getUserSession',
+            type:'GET',
+            dataType:'json',
+        }).done(function (data) {
+            if (data.code ==1){
+                if (data.msg != null){
+                    $("#userSession").html(data.msg+"<span style='font-size: 14px;'> &or; </span>");
+                    //登录成功后a标签的href改变
+                    $("#userSession").prop("href","javascript:;");
+                }else {
+                    $("#userSession").html("登录 ");
+                }
+            }
+        })
+    };
+    getUser();
+
+</script>
+</body>
+</html>

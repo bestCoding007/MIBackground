@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>我的订单 - 小米商城</title>
+    <link rel="shortcut icon" href="../../../img/reception/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../../css/MIReception/orderManagement.css">
+    <style>
+        #userLogin {
+            width: 0.94rem;
+            height: 0.34rem;
+            margin-left: 5.8rem;
+            margin-top: -0.43rem;
+            font-size: 0.1rem;
+            color: white;
+        }
+
+        #userLogin :visited {
+            color: white;
+        }
+
+        .orderTime {
+            left: 0.2rem;
+            position: absolute;
+            border-right: 1px solid #c7c7c7;
+            width: 1.4rem
+        }
+
+        .orderUser {
+            left: 1.62rem;
+            position: absolute;
+            border-right: 1px solid #c7c7c7;
+            width: 1rem;
+        }
+
+        .orderId {
+            left: 2.63rem;
+            position: absolute;
+            border-right: 1px solid #c7c7c7;
+            width: 1.54rem
+        }
+
+        .btnEdit {
+            width: 0.65rem;
+            border: 1px solid #ff6700;
+            cursor: pointer;
+            border-radius: 2px;
+            background: #ff6700;
+            margin-top: 0.4rem;
+            height: 0.2rem;
+            float: right;
+            margin-right: 0.05rem;
+            color: white;
+        }
+        .user-menu{
+            position: absolute;
+            display: none;
+            margin-left: 910px;
+            z-index: 3;
+            width: 120px;
+            padding: 7px 0;
+            list-style-type: none;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: -20px;
+        }
+        .user-menu a{
+            text-decoration: none;
+            color: black;
+        }
+        .user-menu li{
+            padding: 6px 0;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="header">
+        <div class="head">
+            <a href="/reception/MIIndex">
+                < </a>
+            我的订单
+            <div id="userLogin"><a class="userLogin"
+                                   href="/reception/login">登录</a>
+            </div>
+        </div>
+        <ul class="user-menu">
+            <li>
+                <a href="javascript:;" rel="nofollow" target="_blank">个人中心</a>
+            </li>
+            <li>
+                <a href="javascript:;" rel="nofollow" target="_blank">评价晒单</a>
+            </li>
+            <li>
+                <a href="javascript:;" rel="nofollow" target="_blank">我的喜欢</a>
+            </li>
+            <li>
+                <a href="javascript:;" rel="nofollow" target="_blank">小米账户</a>
+            </li>
+            <li id="backIndex">
+                <a href="javascript:;" rel="nofollow">退出登录 </a>
+            </li>
+        </ul>
+        <div class="nav">
+            <ul>
+                <li style="background: #FFA500;">全部有效订单</li>
+                <li>待支付</li>
+                <li>待收货</li>
+                <li>待评价</li>
+                <li>已关闭</li>
+            </ul>
+            <div id="right_input">
+                <input type="text" style="width: 1.4rem;height: 0.2rem;" placeholder="  输入商品名称、商品编号、订单号"/>
+                <button style="width:0.44rem;height: 0.24rem;margin-left: -0.03rem;margin-top: 0.02rem;border: none;color: white;background: lightsalmon">
+                    查询
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="cell1">
+        </div>
+    </div>
+</div>
+</div>
+<script src="../../../js/MIReception/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../js/artDialog/dist/dialog-plus.js"></script>
+<script>
+    autoSize();
+
+    window.onresize = function () {
+        autoSize();
+    }
+
+    function autoSize() {
+        // 获取当前浏览器的视窗宽度，放在w中
+        var w = document.documentElement.clientWidth;
+        // 计算实际html font-size大小
+        var size = w * 100 / 975;
+        // 获取当前页面中的html标签
+        var html = document.querySelector('html');
+        // 设置字体大小样式
+        html.style.fontSize = size + 'px';
+    }
+
+    function get(par) {
+        //获取当前URL
+        var local_url = document.location.href;
+        //截取get字符串
+        var getstr = local_url.substr(local_url.indexOf('?') + 1)
+        //解析成get数组
+        var get = getstr.split('&')
+        //查找要找到参数（par）
+        for (var i in get) {
+            if (get[i].indexOf(par + '=') >= 0) {
+                return get[i].replace(par + '=', '');
+            }
+        }
+        //如果找不到返回false
+        return false;
+    }
+
+    var nickName = "";
+    var uPhone = "";
+    var uAddress = "";
+
+    /*取到当前用户登录信息*/
+    function getUser() {
+        $.ajax({
+            url: '/users/getUserSession',
+            type: 'GET',
+            dataType: 'json',
+        }).done(function (data) {
+            if (data.code == 1) {
+                if (data.msg != null) {
+                    $("#userLogin").html(data.msg + "<span style='font-size: 14px;margin-right: 20px'> &or;</span>");
+                    //登录成功后a标签的href改变
+                    $(".userLogin").prop("href", "javascript:;");
+
+                    //退出登录，返回主页
+                    $("#backIndex").click(function () {
+                        $.ajax({
+                            url: "/users/backIndex",
+                            type: "GET",
+                            success: function () {
+                                location.href = "/reception/MIIndex";
+                                return true;
+                            }
+                        })
+                    });
+                } else {
+                    $(".userLogin").text("登录 ");
+                }
+            }
+            var info = data.msg;
+
+            (function () {
+                $.ajax({
+                    url: "/users/getUserInfo",
+                    type: "GET",
+                    data: {uName: info},
+                }).done(function (data) {
+                    $.each(data.data, function (i, obj) {
+                        nickName = obj.nickname;
+                        $(".orderUser").text("下单用户：" + nickName);
+                        uPhone = obj.userPhone;
+                        uAddress = obj.userAddress;
+                    });
+                });
+            }())
+        })
+    };
+    getUser();
+
+    function showOrder() {
+        $.ajax({
+            url: "/userOrder/getOrder",
+            type: "GET",
+            dataType: "json",
+        }).done(function (data) {
+            $(".title").remove();
+            $(".cell").remove();
+
+            if (data.data.length == 0) {
+                $(".cell1").append("<a href='/reception/MIIndex' id='Info' style='position:absolute;width: 4.2rem;height: 0.4rem;margin-left: 500px;font-size: 40px;color: #ff6700;margin-top: 50px'>您还没有下单哦，去MI商城看看吧。</a>");
+                $(".cell1").append("<img style='margin-left: 670px;margin-top: 150px' src=\"../../../img/reception/ToPlaceTheOrder.jpg\" height=\"250\" width=\"250\"/></div>")
+            } else {
+            }
+            $.each(data.data, function (i, obj) {
+                //sum += (obj.orderPrice * obj.orderNumber);
+                var div = "<div class='title' style='text-align: center'>";
+                div += "<span class='orderTime' style='color: red'>" + "下单时间：" + obj.orderTime + "</span>"
+                div += "<span class='orderUser' style='color: red'></span>"
+                div += "<span class='orderId' style='color: red'>" + "订单号：" + "<span id='orderIds'>" + obj.orderId + "</span>" + "</span>"
+                div += "<span style='color: #ff6700;font-weight: bold'>待支付</span>"
+                div += "</div>"
+                $(".cell1").append(div);
+
+                var div2 = "<div class='cell' style='margin-bottom: 0.5rem'><div class='text'>"
+                div2 += "<div class='brand'>" + obj.orderName + "</div>"
+                div2 += "<span class='intro'>" + obj.orderName + " 轻薄美观的拍照手机，好看又不贵！" + "</span>"
+                div2 += "<span class='spay'>" + obj.orderPrice + "元 × " + obj.orderNumber + "</span>"
+                div2 += "<span class='pay'>" + "实际付款：" + obj.orderPrice * obj.orderNumber + "元" + "</span>"
+                div2 += "<span ><button type='button' class='btnEdit' id='delOrder'>取消订单</button></span>"
+                div2 += "<span id='productInfo'><button type='button' class='btnEdit'>商品详情</button></span>"
+                div2 += "<span ><button type='button' class='btnEdit'>立即评价</button></span>"
+                div2 += "</div><div class='img'><img src='../../files/" + obj.orderPhoto + "' style='width: 1.1rem;height: 1.1rem' class='pImg' /></div></div>"
+                $(".cell1").append(div2);
+            });
+        });
+    }
+
+    showOrder();
+    /*(function () {
+        $.ajax({
+            url: "/userOrder/getOrder",
+            type: "GET",
+            dataType: "json",
+        }).done(function (data) {
+            //alert(JSON.stringify(data))
+            $.each(data.data, function (i, obj) {
+                //sum += (obj.orderPrice * obj.orderNumber);
+                var div = "<div class='title' style='text-align: center'>";
+                div += "<span class='orderTime' style='color: red'>" + "下单时间：" + obj.orderTime + "</span>"
+                div += "<span class='orderUser' style='color: red'></span>"
+                div += "<span class='orderId' style='color: red'>" + "订单号：" +"<span id='orderIds'>"+ obj.orderId +"</span>"+ "</span>"
+                div += "<span style='color: #ff6700;font-weight: bold'>待支付</span>"
+                div += "</div>"
+                $(".cell1").append(div);
+
+                var div2 = "<div class='cell' style='margin-bottom: 0.4rem'><div class='text'>"
+                div2 += "<div class='brand'>" + obj.orderName + "</div>"
+                div2 += "<span class='intro'>" + obj.orderName + " 轻薄美观的拍照手机，好看又不贵！" + "</span>"
+                div2 += "<span class='spay'>" + obj.orderPrice + "元 × " + obj.orderNumber + "</span>"
+                div2 += "<span class='pay'>" + "实际付款：" + obj.orderPrice * obj.orderNumber + "元" + "</span>"
+                div2 += "<span ><button type='button' class='btnEdit' id='delOrder'>删除订单</button></span>"
+                div2 += "<span id='productInfo'><button type='button' class='btnEdit'>商品详情</button></span>"
+                div2 += "<span ><button type='button' class='btnEdit'>立即评价</button></span>"
+                div2 += "</div><div class='img'><img src='../../files/" + obj.orderPhoto + "' style='width: 1.1rem;height: 1.1rem' class='pImg' /></div></div>"
+                $(".cell1").append(div2);
+            });
+        });
+    }())*/
+
+    //商品详情弹出层
+    $("body").on("click", "#productInfo", function () {
+        var info1 = $(this).parent().find(".brand").text();
+        var info2 = $(this).parent().find(".spay").text();
+        var info3 = $(this).parent().find(".pay").text();
+        var info4 = $(this).parent().parent().find("img").prop("src");
+
+        var box = dialog({
+            title: '商品详情',
+            lock: true,
+            content: '<div style="margin: auto;" id="diaBox">' +
+                '<div style="font-size: 20px;border-bottom: 1px solid #ccc;">商品信息<div><img class="pIMG" width="150" height="150"  src=""></div><div id="pName" style="position: absolute;margin-top: -140px;margin-left: 180px"></div><div id="pPrice" style="position: absolute;margin-top: -100px;margin-left: 180px"></div><div id="pCount"  style="position: absolute;margin-top: -60px;margin-left: 180px;margin-bottom: 20px"></div></div>\n' +
+                '<div style="font-size: 20px;border-bottom: 1px solid #ccc;margin-top: 20px">用户信息<div id="uName">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</div><div id="uPhone">电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</div><div id="uAddress" style="margin-bottom: 20px">收货地址：</div></div>\n' +
+                '</div>',
+            width: '4rem',
+            height: '2.1rem',
+            backdropOpacity: 0.5,
+            fixed: true,
+            cancelValue: ' 取消 ',
+            cancel: function () {
+            }
+        });
+        /*打开弹出层和遮罩层*/
+        box.showModal();
+
+        if (uPhone.length == 11) {
+            //替换字符串
+            var result = uPhone.substr(0, parseInt(uPhone.split('').length / 3)) + '****' + uPhone.substr(parseInt(uPhone.split('').length / 2 + 2), uPhone.split('').length)
+        }
+        $("#pName").append(info1);
+        $("#pPrice").append(info2);
+        $("#pCount").append(info3);
+        $("#uName").append(nickName);
+        $("#uPhone").append(result);
+        $("#uAddress").append(uAddress);
+        $(".pIMG").prop("src", info4)
+    })
+
+    //删除
+    $("body").on("click", "#delOrder", function () {
+        var orderId = $(this).parents().parent().find("#orderIds").html();
+        if(confirm("您确定到取消订单吗？")){
+            $.ajax({
+                url: "/userOrder/deleteOrderId",
+                type: "POST",
+                data: {orderId: orderId},
+                success: function (data) {
+                    if (data.code == 1) {
+                        showOrder();
+                        getUser();
+                    } else {
+                        showOrder();
+                        getUser();
+                    }
+                }
+            })
+        }else {
+            return false;
+        }
+    })
+
+    //登录的悬停
+    ;(function () {
+        $(".user-menu").on("mouseover mouseout", function (event) {
+            if (event.type == "mouseover") {
+                //鼠标悬停
+                $(".user-menu").css('display', 'block');
+            } else if (event.type == "mouseout") {
+                //鼠标离开
+                $(".user-menu").css('display', 'none');
+            }
+        })
+    }())
+
+    //登录的悬停
+    ;(function () {
+        $("#userLogin").on("mouseover", function (event) {
+            if (event.type == "mouseover") {
+                //鼠标悬停
+                $(".user-menu").css('display', 'block');
+            }
+        })
+    }())
+
+</script>
+</body>
+</html>
