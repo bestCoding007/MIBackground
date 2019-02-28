@@ -24,6 +24,10 @@ public class UsersImpl implements UsersService {
         return usersDao.receptionLogin(uName,userPhone,MD5Util.md5(passWord));
     }
 
+    /*public int registerVerify(String userPhone, String passWord, Integer userLevel, Date userTime, String userPhoto) {
+        return usersDao.registerVerify(userPhone, MD5Util.md5(passWord), userLevel, userTime, userPhoto);
+    }*/
+
     public int registerVerify(String userPhone, String passWord) {
         return usersDao.registerVerify(userPhone, MD5Util.md5(passWord));
     }

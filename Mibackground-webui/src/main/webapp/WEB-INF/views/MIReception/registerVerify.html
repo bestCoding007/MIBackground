@@ -69,15 +69,28 @@
                 });
             });
 
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            if (month < 10) {
+                month = "0" + month;
+            }
+            if (day < 10) {
+                day = "0" + day;
+            }
+            var nowDate = year + "-" + month + "-" + day;
+
             //注册
             $("body").on("click","#registerUser",function () {
                $.ajax({
                    url:"/users/registerVerify",
                    type:"POST",
-                   data:{userPhone:$("#userPhone").val(),passWord:$("#passWord").val(),phoneCode:$("#txt3").val()}
+                   data:{userPhone:$("#userPhone").val(),passWord:$("#passWord").val(),phoneCode:$("#txt3").val(),userLevel:1,userTime:nowDate,userPhoto:"user4.jpg"}
                }).done(function (data) {
                    if(data.code==1){
                        location.href = "/reception/login";
+                       alert(data.msg);
                    }else{
                        alert(data.msg);
                        $("#txt3").val("");
